@@ -18,5 +18,5 @@ Comic Easel is a plugin that allows you to incorporate webcomics into your exist
 == Installation ==
 
 * Add the plugin, activate it.
-* Modify your theme adding '<?php do_action('comic-area'); ?>' in a position where to display the comic, generally it should be right above the #content and under the menu bar.
+* Modify your theme adding `<?php do_action('comic-area'); ?>` in a position where to display the comic, generally it should be right above the #content and under the menu bar.
 
