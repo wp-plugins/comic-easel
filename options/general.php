@@ -1,10 +1,10 @@
 <div class="wrap">
 
-	<div id="comiceasel-config">
+	<div id="comiceasel-general">
 		<form method="post" id="myForm-comiceasel" enctype="multipart/form-data">
 		<?php wp_nonce_field('update-options') ?>
 
-			<div class="easel-options">
+			<div class="comiceasel-options">
 			
 				<table class="widefat">
 					<thead>
@@ -37,6 +37,15 @@
 						</td>
 						<td>
 							<?php _e('Enabling this will display the comic post on the home page.','comiceasel'); ?>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="click_comic_next"><?php _e('Clicking the comic goes to next comic?','comiceasel'); ?></label></th>
+						<td>
+							<input id="click_comic_next" name="click_comic_next" type="checkbox" value="1" <?php checked(true, $ceo_options['click_comic_next']); ?> />
+						</td>
+						<td>
+							<?php _e('When this is enabled, when the comic is mouse over and clicked it will go to the next comic in the chapter.','comiceasel'); ?>
 						</td>
 					</tr>
 				</table>

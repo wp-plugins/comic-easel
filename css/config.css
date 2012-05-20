@@ -227,3 +227,7 @@ div.show .ceoadmin-footer img{
 	min-width: 80px;
 	text-align: center;
 }
+
+.alternate {
+    background: #eff;
+}

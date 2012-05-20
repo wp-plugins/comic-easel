@@ -7,7 +7,14 @@ function ceo_display_comic($size = 'full') {
 		$thumbnail = wp_get_attachment_image_src( $post_image_id, $size, false);
 		$thumbnail = reset($thumbnail);
 		$hovertext = ceo_the_hovertext();
-		$output = '<img src="'.$thumbnail.'" alt="'.$hovertext.'" title="'.$hovertext.'" />';
+		$next_comic = ceo_get_next_comic_permalink();
+		if (ceo_pluginfo('click_comic_next') && !empty($next_comic)) {
+			$output = '<a href="'.$next_comic.'">';
+		}
+		$output .= '<img src="'.$thumbnail.'" alt="'.$hovertext.'" title="'.$hovertext.'" />';
+		if (ceo_pluginfo('click_comic_next') && !empty($next_comic)) {
+			$output .= '</a>';
+		}
 		return apply_filters('ceo_comics_display_comic', $output);
 	} else
 		return "No Comic (featured image) Found.  Set One.";
@@ -48,7 +55,11 @@ function ceo_display_comic_post_home() {
 			ceo_Protect();
 			$posts = &query_posts('post_type=comic&showposts=1');
 			while (have_posts()) : the_post();
-				ceo_display_comic_post();
+				if (function_exists('comicpress_display_post')) {
+					comicpress_display_post();
+				} elseif (function_exists('easel_display_post')) {
+					easel_display_post();
+			    } else ceo_display_comic_post();
 			endwhile;
 			if (ceo_pluginfo('enable_comments_on_homepage')) {
 				$withcomments = 1;
