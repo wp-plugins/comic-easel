@@ -15,6 +15,8 @@ Comic Easel is a plugin that allows you to incorporate webcomics into your exist
 [WARNING] This plugin is currently - In Developement
 
 
+There are other "action" area's that you can put into your theme, not just the comic-area.  Those are being documented and will be available this coming week.
+
 == Installation ==
 
 * Add the plugin, activate it.
