@@ -178,41 +178,6 @@ function ceo_flush_rewrite() {
 	$wp_rewrite->flush_rules();
 }
 
-// Checks chapters, creates them if needs be, checks directories, creates them if need be.
-// This does not work yet, its purpose is to generate default chapters if no chapters exist.
-function ceo_checkdefaults() {
-	$checkchapters = get_terms('chapters', 'orderby=count&hide_empty=0');
-	if (empty($checkchapters)) {
-		$bookname = stripslashes(__('Book 1', 'comiceasel'));
-		$bookslug = sanitize_title($bookname);
-		// Should I check for .. the slug of term or name of term?
-		if (!term_exists($bookslug, 'chapters')) {
-			$args = array(
-					'description' => stripslashes(__('The first book.', 'comiceasel')),
-					'slug' => $bookslug 
-					);
-			$returned_book_info = wp_insert_term($bookname, 'chapters', $args);
-			$parent_term_id = 0;
-			// should I get term_taxonomy_id ?
-			// old: if (isset($returned_book_info['term_id'])) $parent_term_id = $returned_book_info['term_id'];
-			$parent_term = term_exists( $bookslug, 'chapters' ); // array is returned if taxonomy is given
-			$parent_term_id = $parent_term['term_id']; // get numeric term id
-			
-			if ($parent_term_id) {
-				$chaptername = stripslashes(__('Chapter 1', 'comiceasel'));
-				$chapterslug = sanitize_title($chaptername);
-				$args = array(
-						'description' => stripslashes(__('First chapter of Book 1', 'comiceasel')),
-						'slug' => $chapterslug,
-						'parent' => $parent_term_id
-						);
-				$returned_chapter_info = wp_insert_term($chaptername, 'chapters', $args);
-			}
-		}
-	}
-}
-
-
 // This file handles navigation of the comic
 @require('functions/navigation.php');
 

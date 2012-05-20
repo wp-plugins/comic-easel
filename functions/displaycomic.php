@@ -45,16 +45,16 @@ function ceo_display_comic_post_home() {
 	global $wp_query;
 	if (is_home() && ceo_pluginfo('display_comic_post_on_home')) { 
 		if (!is_paged())  { 
-			Protect();
+			ceo_Protect();
 			$posts = &query_posts('post_type=comic&showposts=1');
 			while (have_posts()) : the_post();
-				easel_display_post();
+				ceo_display_comic_post();
 			endwhile;
 			if (ceo_pluginfo('enable_comments_on_homepage')) {
 				$withcomments = 1;
 				comments_template('', true);
 			}
-			UnProtect();
+			ceo_UnProtect();
 			?>
 			<div id="blogheader"></div>	
 		<?php }
@@ -76,4 +76,33 @@ if (!function_exists('ceo_display_comic_thumbnail')) {
 		return apply_filters('easel_display_comic_thumbnail', $output);
 	}
 }
-?>
+
+function ceo_display_comic_post() {
+global $post, $wp_query; ?>
+	<div <?php post_class(); ?>>
+		<div class="comic-post-head"></div>
+		<div class="comic-post-content">
+			<div class="comic-post-info">
+				<?php do_action('comic-post-info'); ?>
+				<div class="comic-post-text post-title">
+						<h2 class="comic-post-title entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
+				</div>
+			</div>
+				<div class="clear"></div>
+				<div class="entry">
+					<?php the_content(); ?>
+					<div class="clear"></div>
+				</div>
+				<?php wp_link_pages(array('before' => '<div class="linkpages"><span class="linkpages-pagetext">Pages:</span> ', 'after' => '</div>', 'next_or_number' => 'number')); ?>
+				<div class="clear"></div>
+				<div class="comic-post-extras">
+					<?php 
+						do_action('easel-post-extras');
+					?>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="comic-post-foot"></div>
+		</div>
+<?php 
+}
