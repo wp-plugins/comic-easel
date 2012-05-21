@@ -164,10 +164,17 @@ if (is_admin()) {
 	// only load the plugin code of we're in the administration part of WordPress.
 	@require('ceo-admin.php');
 	@require('functions/admin-meta.php');
-} else {
-	// This style needs to be loaded on all the comic-easel pages inside ceo-core.php instead.
-	wp_enqueue_style('comiceasel-default-style', ceo_pluginfo('plugin_url').'/css/comiceasel.css');
+} 
+
+add_action('wp_print_styles', 'ceo_run_css');
+
+// This style needs to be loaded on all the comic-easel pages inside ceo-core.php instead.
+
+function ceo_run_css() {
+	wp_register_style('comiceasel-style', ceo_pluginfo('plugin_url').'/css/comiceasel.css');
+	wp_enqueue_style('comiceasel-style');
 }
+
 
 // Flush Rewrite Rules & create chapters
 register_activation_hook( __FILE__, 'ceo_flush_rewrite' );

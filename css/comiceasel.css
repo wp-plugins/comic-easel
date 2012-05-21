@@ -3,19 +3,38 @@ Comic Easel - Style.css
 Defaults for the Comic Easel Elements.
 */
 
-#default-nav-wrapper {
+table#comic-nav-wrapper {
+    background: none;
+    border: 0;
 	width: 100%;
 	text-align: center;
+	border-collapse: collapse;
 }
 
-	.default-nav {
-		margin: 0 auto;
-		width: 300px;
+    tr.comic-nav-container {
+	    background: #333 !important;
+		margin: 6px auto;
+		border: solid 1px #000;
+	    -moz-border-radius: 5px;
+	    -khtml-border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	    border-radius: 5px;
+	    padding: 3px;
+	    display: inline-block;
 	}
 
-	.default-nav-base {
+	td.comic-nav {
+	    border: 0 !important;
 		display: inline-block;
 		padding: 0 10px;
+	}
+	
+	.comic-nav a:link, .comic-nav a:visited {
+	    color: #fff;
+	}
+	
+    .comic-nav a:hover {
+	    color: #fffc00;
 	}
 	
 .infotext {

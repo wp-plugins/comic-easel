@@ -16,6 +16,9 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 [WARNING] This plugin is currently - In Developement
 
+Updated 2:15pm 05/21/2012
+- Added first appeared to cast page and some css changes (code wise) to the navigation
+
 Updated 1:15am 05/21/2012
 - Fixed the config screens to allow tabbed config panels, created couple more options
 
