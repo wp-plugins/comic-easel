@@ -5,7 +5,7 @@ add_shortcode( 'cast-page', 'ceo_cast_page' );
 
 function ceo_cast_page( $atts, $content = null ) {
 	$cast_output = '';
-	$characters = get_terms( 'characters', 'orderby=count&hide_empty=1' );
+	$characters = get_terms( 'characters', 'orderby=count&order=desc&hide_empty=1' );
 	if (is_array($characters)) {
 		foreach ($characters as $character) {
 			$cast_output .= '<div class="cast-box">';
