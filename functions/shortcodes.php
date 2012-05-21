@@ -5,7 +5,7 @@ add_shortcode( 'cast-page', 'ceo_cast_page' );
 
 function ceo_cast_page( $atts, $content = null ) {
 	$cast_output = '';
-	$characters = get_terms( 'characters', 'orderby=name&hide_empty=1' );
+	$characters = get_terms( 'characters', 'orderby=count&hide_empty=1' );
 	if (is_array($characters)) {
 		foreach ($characters as $character) {
 			$cast_output .= '<div class="cast-box">';
@@ -19,15 +19,14 @@ function ceo_cast_page( $atts, $content = null ) {
 			$cast_output .= '<p class="cast-character-stats">';
 			$cast_output .= '<i>'.__('Comics:','comiceasel').'</i> <strong>'.$character->count.'</strong><br />';
 			$args = array(
-					'tax_query' => array(
-						array(
-							'taxonomy' => 'characters',
-							'field' => 'slug',
-							'terms' => $character->slug
-							)
-						)
-					);
-			$qposts = query_posts( $args );
+					'numberposts' => 1,
+					'post_type' => 'comic',
+					'orderby' => 'post_date',
+					'order' => 'ASC',
+					'post_status' => 'publish',
+					'characters' => $character->slug,
+					);					
+			$qposts = get_posts( $args );
 			if (!empty($qposts)) {
 				$first_seen = $qposts[0]->post_title;
 				$first_seen_id = $qposts[0]->ID;
