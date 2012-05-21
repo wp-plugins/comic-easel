@@ -1,7 +1,7 @@
 <?php
 
 // Injected with a poison.
-add_action('easel-post-foot', 'ceo_display_edit_link');
+add_action('comic-post-foot', 'ceo_display_edit_link');
 	
 function ceo_display_edit_link() {
 	global $post;
@@ -10,18 +10,18 @@ function ceo_display_edit_link() {
 	}
 }
 
-add_filter('easel_display_post_category', 'ceo_display_comic_chapters');
+add_action('comic-post-info', 'ceo_display_comic_chapters');
 
 // TODO: Make this actually output a chapter set that the comic is in, instead of the post-type
 function ceo_display_comic_chapters($post_category) {
 	global $post;
 	if ($post->post_type == 'comic') {
-		$before = '<div class="comic-chapter">Chapter: ';
+		$before = '<div class="comic-chapter">Story: ';
 		$sep = ', '; 
 		$after = '</div>';
 		$post_category = get_the_term_list( $post->ID, 'chapters', $before, $sep, $after );
 	}
-	return apply_filters('ceo_display_comic_chapters', $post_category);
+	echo apply_filters('ceo_display_comic_chapters', $post_category);
 }
 
 // var_dump(ceo_pluginfo('disable_comic_on_home_page'));
@@ -73,7 +73,7 @@ function ceo_display_comic_wrapper() {
 	<?php }
 }
 
-add_action('easel-post-info', 'ceo_display_comic_locations');
+add_action('comic-post-info', 'ceo_display_comic_locations');
 
 function ceo_display_comic_locations() {
 	global $post;
@@ -86,7 +86,7 @@ function ceo_display_comic_locations() {
 	}
 }
 
-add_action('easel-post-info', 'ceo_display_comic_characters');
+add_action('comic-post-info', 'ceo_display_comic_characters');
 
 function ceo_display_comic_characters() {
 	global $post;
@@ -101,7 +101,7 @@ function ceo_display_comic_characters() {
 
 // Syndication Injection
 
-add_filter('easel_thumbnail_feed', 'ceo_inject_comic_into_feed');
+// add_filter('comic_thumbnail_feed', 'ceo_inject_comic_into_feed');
 
 function ceo_inject_comic_into_feed($post_thumbnail) {
 	global $post;
@@ -110,7 +110,7 @@ function ceo_inject_comic_into_feed($post_thumbnail) {
 	return $post_thumbnail;
 }
 
-add_action('easel-display-the-content-archive-before', 'ceo_inject_thumbnail_into_archive_posts');
+// add_action('easel-display-the-content-archive-before', 'ceo_inject_thumbnail_into_archive_posts');
 // add_action('easel-display-the-content-before', 'ceo_inject_thumbnail_into_archive_posts');
 
 

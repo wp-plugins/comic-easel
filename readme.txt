@@ -16,7 +16,8 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 [WARNING] This plugin is currently - In Developement
 
-Ver 1.0 - Updated 3pm 05/20/2012
+Ver 1.0 - Updated 5:30pm 05/20/2012
+- Added shortcode `[cast-page]` - Create a page, add the shortcode and it will take all your "characters" and make a page for them, you can add descriptions in the wp-admin -> comics -> characters interface.
 
 == Other Notes == 
 
@@ -27,6 +28,11 @@ Ver 1.0 - Updated 3pm 05/20/2012
 Generally the two files to edit is the index.php and the single.php, however some layouts are auto-generated with code and those you will need to seek advice out from their designers, the makers of those particular themes.
 
 There are other "action" area's that you can put into your theme, not just the comic-area.  Those are being documented and will be available this coming week.
+
+
+`do_action('comic_area');` - This is for the area you want your comic displayed on the home page and single pages.
+
+`do_action('comic_blog_area');` - This is for the blog portion of the comic for the home page only.
 
 
 == Screenshots == 
