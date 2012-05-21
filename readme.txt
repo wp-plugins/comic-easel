@@ -16,6 +16,9 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 [WARNING] This plugin is currently - In Developement
 
+Updated 8:15pm 05/20/2012
+- Comic posts on the front page now have the correct post ;/
+
 Updated 6:25pm 05/20/2012
 - Added syndication filters so that the comic posts appear in the main feed w/medium sized thumbnail
 

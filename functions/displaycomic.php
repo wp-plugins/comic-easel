@@ -53,8 +53,8 @@ function ceo_display_comic_post_home() {
 	if (is_home() && ceo_pluginfo('display_comic_post_on_home')) { 
 		if (!is_paged())  { 
 			ceo_Protect();
-			$posts = &query_posts('post_type=comic&showposts=1');
-			while (have_posts()) : the_post();
+			$wp_query->in_the_loop = true; $comicFrontpage = new WP_Query(); $comicFrontpage->query('post_type=comic&showposts=1');
+			while ($comicFrontpage->have_posts()) : $comicFrontpage->the_post();
 				if (function_exists('comicpress_display_post')) {
 					comicpress_display_post();
 				} elseif (function_exists('easel_display_post')) {
@@ -93,11 +93,12 @@ global $post, $wp_query; ?>
 	<div <?php post_class(); ?>>
 		<div class="comic-post-head"></div>
 		<div class="comic-post-content">
+			<div class="comic-post-text post-title">
+				<h2 class="comic-post-title entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
+			</div>
 			<div class="comic-post-info">
 				<?php do_action('comic-post-info'); ?>
-				<div class="comic-post-text post-title">
-						<h2 class="comic-post-title entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
-				</div>
+
 			</div>
 				<div class="clear"></div>
 				<div class="entry">
@@ -108,7 +109,7 @@ global $post, $wp_query; ?>
 				<div class="clear"></div>
 				<div class="comic-post-extras">
 					<?php 
-						do_action('easel-post-extras');
+						do_action('comic-post-extras');
 					?>
 					<div class="clear"></div>
 				</div>
