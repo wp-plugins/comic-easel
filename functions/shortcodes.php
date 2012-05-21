@@ -8,18 +8,6 @@ function ceo_cast_page( $atts, $content = null ) {
 	$characters = get_terms( 'characters', 'orderby=name&hide_empty=1' );
 	if (is_array($characters)) {
 		foreach ($characters as $character) {
-			$args = array(
-					'tax_query' => array(
-						array(
-							'taxonomy' => 'characters',
-							'field' => 'slug',
-							'terms' => $character->slug
-							)
-						)
-					);
-			$qposts = query_posts( $args );
-			$first_seen = $qposts[0]->post_title;
-			$first_seen_id = $qposts[0]->ID;
 			$cast_output .= '<div class="cast-box">';
 			$cast_output .= '<div class="cast-pic character-'.$character->slug.'">';
 			$cast_output .= '</div>';
@@ -30,7 +18,22 @@ function ceo_cast_page( $atts, $content = null ) {
 			$cast_output .= '</p>';
 			$cast_output .= '<p class="cast-character-stats">';
 			$cast_output .= '<i>'.__('Comics:','comiceasel').'</i> <strong>'.$character->count.'</strong><br />';
-			$cast_output .= '<i>'.__('First Appearance:','comiceasel').'</i> <a href="'.get_permalink($first_seen_id).'">'.$first_seen.'</a><br />';
+			$args = array(
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'characters',
+							'field' => 'slug',
+							'terms' => $character->slug
+							)
+						)
+					);
+			$qposts = query_posts( $args );
+			if (!empty($qposts)) {
+				$first_seen = $qposts[0]->post_title;
+				$first_seen_id = $qposts[0]->ID;
+				$cast_output .= '<i>'.__('First Appearance:','comiceasel').'</i> <a href="'.get_permalink($first_seen_id).'">'.$first_seen.'</a><br />';
+			}
+			wp_reset_query();
 			$cast_output .= '</p>';
 			$cast_output .= '</div>';
 			$cast_output .= '<div style="clear:both;"></div>';
