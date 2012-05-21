@@ -190,6 +190,9 @@ function ceo_flush_rewrite() {
 // This file contains all the shortcodes for archives and cast pages
 @require('functions/shortcodes.php');
 
+// Syndication/ RSS injections
+@require('functions/syndication.php');
+
 /**
  * This is function ceo_clean_filename
  *

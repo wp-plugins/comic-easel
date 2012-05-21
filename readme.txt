@@ -16,6 +16,9 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 [WARNING] This plugin is currently - In Developement
 
+Updated 6:25pm 05/20/2012
+- Added syndication filters so that the comic posts appear in the main feed w/medium sized thumbnail
+
 Ver 1.0 - Updated 5:30pm 05/20/2012
 - Added shortcode `[cast-page]` - Create a page, add the shortcode and it will take all your "characters" and make a page for them, you can add descriptions in the wp-admin -> comics -> characters interface.
 

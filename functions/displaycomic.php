@@ -74,15 +74,15 @@ function ceo_display_comic_post_home() {
 
 // Do the thumbnail display functions here.
 if (!function_exists('ceo_display_comic_thumbnail')) {
-	function ceo_display_comic_thumbnail($override_post = null, $type = 'thumbnail') {
+	function ceo_display_comic_thumbnail($override_post = null) {
 		global $post;
 		$thumbnail = '';
 		$post_to_use = !empty($override_post) ? $override_post : $post;
 		
 		if ( has_post_thumbnail($post_to_use->ID) ) {
-			$output =  "<a href=\"".get_permalink($post_to_use->ID)."\" rel=\"bookmark\" title=\"Permanent Link to ".get_the_title()."\">".get_the_post_thumbnail($post_to_use->ID, 'thumbnail')."</a>\r\n";
+			$output =  "<a href=\"".get_permalink($post_to_use->ID)."\" rel=\"bookmark\" title=\"Permanent Link to ".get_the_title()."\">".get_the_post_thumbnail($post_to_use->ID, 'medium')."</a>\r\n";
 		} else {
-			$output = "No Thumbnail Found.";	
+//			$output = "No Thumbnail Found.";
 		}
 		return apply_filters('easel_display_comic_thumbnail', $output);
 	}
