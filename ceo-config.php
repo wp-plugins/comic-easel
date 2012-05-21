@@ -19,7 +19,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'comiceasel_reset') {
 $ceo_options = get_option('comiceasel-config');
 if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-options') ) {
 		
-		if ($_REQUEST['action'] == 'ceo_save_options') {
+		if ($_REQUEST['action'] == 'ceo_save_general') {
 /*
 			foreach (array(
 				'layout',
@@ -32,14 +32,34 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 			foreach (array(
 				'add_dashboard_frumph_feed_widget',
 				'disable_comic_on_home_page',
-				'disable_comic_blog_on_home_page',
-				'click_comic_next'
+				'disable_comic_blog_on_home_page'
 			) as $key) {
 				if (!isset($_REQUEST[$key])) $_REQUEST[$key] = 0;
 				$ceo_options[$key] = (bool)( $_REQUEST[$key] == 1 ? true : false );
 			}
 			
 			$tab = 'general';
+			update_option('comiceasel-config', $ceo_options);
+		}
+		if ($_REQUEST['action'] == 'ceo_save_navigation') {
+/*
+			foreach (array(
+				'layout',
+				'scheme'
+					) as $key) {
+							if (isset($_REQUEST[$key])) 
+								$easel_options[$key] = wp_filter_nohtml_kses($_REQUEST[$key]);
+			}
+*/
+			foreach (array(
+				'click_comic_next',
+				'navigate_only_chapters'
+			) as $key) {
+				if (!isset($_REQUEST[$key])) $_REQUEST[$key] = 0;
+				$ceo_options[$key] = (bool)( $_REQUEST[$key] == 1 ? true : false );
+			}
+			
+			$tab = 'navigation';
 			update_option('comiceasel-config', $ceo_options);
 		}
 		if ($tab) { ?>
@@ -53,7 +73,8 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 		<div id="ceoadmin">
 		  <?php
 		  	$tab_info = array(
-		  		'general' => __('General', 'easel')
+		  		'general' => __('General', 'comiceasel'),
+		  		'navigation' => __('Navigation', 'comiceasel')
 		  	);
 		  	if (empty($tab)) { $tab = array_shift(array_keys($tab_info)); }
 
@@ -68,18 +89,17 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 		</div>
 	</div>
 	<script type="text/javascript">
-	<![[
 		(function($) {
 			var showPage = function(which) {
-				$('#easel-options-pages > div').each(function(i) {
-					$(this)[(this.id == 'easel-' + which) ? 'show' : 'hide']();
+				$('#comiceasel-options-pages > div').each(function(i) {
+					$(this)[(this.id == 'comiceasel-' + which) ? 'show' : 'hide']();
 				});
 			};
 
 			$('.comiceasel-tab').click(function() {
 				$('#message').animate({height:"0", opacity:0, margin: 0}, 100, 'swing', function() { $(this).remove() });
 
-				showPage(this.id.replace('easel-tab-', ''));
+				showPage(this.id.replace('comiceasel-tab-', ''));
 				var myThis = this;
 				$('.comiceasel-tab').each(function() {
 					var isSame = (this == myThis);
@@ -90,9 +110,9 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 
 			showPage('<?php echo esc_js($tab); ?>');
 		}(jQuery));
-	]]>
 	</script>
 </div>
+
 	<div class="ceoadmin-footer">
 		<br />
 		<?php _e('Created, Developed and maintained by','easel'); ?> <a href="http://frumph.net/">Philip M. Hofer</a> <small>(<a href="http://frumph.net/">Frumph</a>)</small><br />

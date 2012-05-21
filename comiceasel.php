@@ -226,7 +226,8 @@ function ceo_load_options($reset = false) {
 			'add_dashboard_frumph_feed_widget' => true,
 			'disable_comic_on_home_page' => false,
 			'disable_comic_blog_on_home_page' => false,
-			'click_comic_next' => true
+			'click_comic_next' => true,
+			'navigate_only_chapters' => true
 		) as $field => $value) {
 			$ceo_config[$field] = $value;
 		}

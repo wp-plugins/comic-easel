@@ -16,6 +16,9 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 [WARNING] This plugin is currently - In Developement
 
+Updated 1:15am 05/21/2012
+- Fixed the config screens to allow tabbed config panels, created couple more options
+
 Updated 8:15pm 05/20/2012
 - Comic posts on the front page now have the correct post ;/
 
@@ -43,7 +46,4 @@ There are other "action" area's that you can put into your theme, not just the c
 
 == Screenshots == 
 
-1. The Comic List of all Comics
-2. The Chapter Editor (same as category)
-3. The Character Editor (same as tags)
-4. The Location Editor (Same as category)
+1. The Comic Editor Section
