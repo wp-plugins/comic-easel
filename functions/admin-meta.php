@@ -51,7 +51,7 @@ function ceo_manage_comic_columns($column_name, $id) {
 	        break;
 	case 'comicimages':
 			$post = &get_post($id);
-			$comicthumb = ceo_display_comic_thumbnail('small', $post, false, 100); 
+			$comicthumb = ceo_display_comic_thumbnail('thumbnail', $post); 
 			if (!$comicthumb) { echo 'No Comic Found.'; } else {
 				echo $comicthumb;
 			}
@@ -66,7 +66,7 @@ function ceo_edit_comic_in_post($post) {
 <div class="inside" style="overflow: hidden; width: 100%;">
 	<div id="comicthumbs">
 		<center>
-		<?php echo ceo_display_comic_thumbnail('medium', $post, false, 200); ?><br />
+		<?php echo ceo_display_comic_thumbnail('thumbnail', $post); ?><br />
 		</center>
 	</div>
 </div>

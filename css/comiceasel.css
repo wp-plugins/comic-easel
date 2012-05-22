@@ -134,4 +134,5 @@ table#comic-nav-wrapper {
     width: 150px;
     float: left;
     margin-right: 3px;
+    display: block;
 }
