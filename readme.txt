@@ -10,29 +10,38 @@ Comic Easel allows you to post webcomics to your theme.
 
 == Description ==
 
-Comic Easel is a plugin that allows you to incorporate webcomics into your existing WordPress theme.
-
 To Convert your existing ComicPress theme comics to Comic Easel's post type there is a plugin available called CP2CE.
 
-[WARNING] This plugin is currently - In Developement
+Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost any WordPress theme. With just a few modifications of adding ‘injection’ action locations into a theme, you can have the theme of your choice display a comic.
 
-Updated 6:35pm 05/21/2012
-- Added the [comic-archive] shortcode
+The core reason to use Comic Easel above other WordPress theme’s is that you are not limited to the basic ComicPress & Other themes that are specifically designed for WebComics that utilize structures that you do not require or want to make use of. There are a plentiful amount of themes in the WordPress repository that you can now take advantage of that give you tons of options you otherwise wouldn’t have had.
 
-Updated 2:15pm 05/21/2012
-- Added first appeared to cast page and some css changes (code wise) to the navigation
+With Comic Easel’s extra taxonomies to control Character and Locations, you can provide your end readers with a plethora of information that wouldn’t have had before that is auto-generated. The Cast Page itself shows how many times a character was in a comic as well as the first comic they were seen in.
 
-Updated 1:15am 05/21/2012
-- Fixed the config screens to allow tabbed config panels, created couple more options
+Features of 1.0
 
-Updated 8:15pm 05/20/2012
-- Comic posts on the front page now have the correct post ;/
+Custom Post Type control of posts.
+Media Library handling of comics.
+As many chapters/stories as you would like.
+Individual navigation per chapter or all.
+Character and Location settings per Comic
 
-Updated 6:25pm 05/20/2012
-- Added syndication filters so that the comic posts appear in the main feed w/medium sized thumbnail
+Widgets
 
-Ver 1.0 - Updated 5:30pm 05/20/2012
-- Added shortcode `[cast-page]` - Create a page, add the shortcode and it will take all your "characters" and make a page for them, you can add descriptions in the wp-admin -> comics -> characters interface.
+Chapter Dropdown, brings you to the first comic in the chapter (story)
+Calendar display, show’s you what days comic posts were made on, can add images and links to backgrounds.
+Recent Comics, a list of comics that have been posted as of late.
+Thumbnail, display a thumbnail of a random comic, or first/latest comic in a chapter (or all)
+
+Short Codes
+- Shortcodes are simple embed statements that you can put into pages/post that display information.
+
+[comic-archive] Display a list of your comics by individual chapters or all.
+[cast-page] Display a list of all of your characters, how many comics they were in and when they first appeared
+
+Action Injection Locations
+
+A number of injection snippets that you add to your theme, mini navigation for the menubar, comic area and comic blost post area, including post-information is available to customize your theme out with auto generated information.
 
 == Other Notes == 
 
@@ -49,6 +58,7 @@ There are other "action" area's that you can put into your theme, not just the c
 
 `do_action('comic_blog_area');` - This is for the blog portion of the comic for the home page only.
 
+`do_action('comic-mini-navigation');` - For menubar's to have mini navigation (prev/next) in them.
 
 == Screenshots == 
 
