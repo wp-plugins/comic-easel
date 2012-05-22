@@ -2,9 +2,9 @@
 /*
 Plugin Name: Comic Easel
 Plugin URI: http://comiceasel.com
-Description: Manage a Comic with the Easel theme.
+Description: Add any Comic w/ Navigation to most any theme.
 Version: 1.0
-Author: Philip M. Hofer (Frumph), Tyler Martin and Contributions from the ComicPress dev team.
+Author: Philip M. Hofer (Frumph)
 Author URI: http://frumph.net/
 
 Copyright 2010 Philip M. Hofer (Frumph)  (email : philip@frumph.net)
