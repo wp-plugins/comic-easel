@@ -146,7 +146,7 @@ add_action('comic-blog-area', 'ceo_display_comic_post_home');
 
 function ceo_display_comic_post_home() { 
 	global $wp_query;
-	if (is_home() && ceo_pluginfo('display_comic_post_on_home')) { 
+	if (is_home() && !ceo_pluginfo('disable_comic_blog_on_home_page')) { 
 		if (!is_paged())  { 
 			ceo_Protect();
 			$wp_query->in_the_loop = true; $comicFrontpage = new WP_Query(); $comicFrontpage->query('post_type=comic&showposts=1');
