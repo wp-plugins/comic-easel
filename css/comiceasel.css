@@ -106,3 +106,32 @@ table#comic-nav-wrapper {
 .cast-comic-link {
     text-align: right;
 }
+
+/* Archive Shortcode */
+
+.comic-archive-chapter-wrap {
+    margin-bottom: 30px;
+}
+
+.comic-archive-wrap {
+    padding: 0;
+    list-style-type: none;
+}
+
+.comic-archive-chapter-description {
+    padding: 10px;
+ }
+
+.comic-archive-title {
+    margin-left: 10px;
+}
+
+.comic-archive-date {
+    width: 130px;
+}
+
+.comic-archive-thumbnail {
+    width: 150px;
+    float: left;
+    margin-right: 3px;
+}

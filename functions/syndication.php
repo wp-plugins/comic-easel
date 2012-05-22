@@ -12,7 +12,7 @@ add_filter('request', 'ceo_rss_request');
 function ceo_insert_comic_into_feed($content) {
 	global $wp_query, $post;
 	if (is_feed() && $post->post_type == 'comic') {
-		$content = '<p>'. ceo_display_comic_thumbnail('thumbnail', $post) . '</p>' . $content;
+		$content = '<p>'. ceo_display_comic_thumbnail('full', $post) . '</p>' . $content;
 	}
 	return apply_filters('ceo_insert_comic_into_feed', $content);
 }

@@ -30,12 +30,12 @@
 					</td>
 				</tr>
 				<tr class="alternate">
-					<th scope="row"><label for="disable_comic_blog_on_home_page"><?php _e('Display Comic Post on the Home Page?','comiceasel'); ?></label></th>
+					<th scope="row"><label for="disable_comic_blog_on_home_page"><?php _e('Disable the Comic Post on the Home Page?','comiceasel'); ?></label></th>
 					<td>
 						<input id="disable_comic_blog_on_home_page" name="disable_comic_blog_on_home_page" type="checkbox" value="1" <?php checked(true, $ceo_options['disable_comic_blog_on_home_page']); ?> />
 					</td>
 					<td>
-						<?php _e('Enabling this will display the comic post on the home page.','comiceasel'); ?>
+						<?php _e('Checking this will stop the display of the comic\'s blog on the home page.','comiceasel'); ?>
 					</td>
 				</tr>
 			</table>
