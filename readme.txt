@@ -12,13 +12,13 @@ Comic Easel allows you to post webcomics to your theme.
 
 To Convert your existing ComicPress theme comics to Comic Easel's post type there is a plugin available called CP2CE.
 
-Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost any WordPress theme. With just a few modifications of adding ‘injection’ action locations into a theme, you can have the theme of your choice display a comic.
+Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost any WordPress theme. With just a few modifications of adding *injection* action locations into a theme, you can have the theme of your choice display a comic.
 
-The core reason to use Comic Easel above other WordPress theme’s is that you are not limited to the basic ComicPress & Other themes that are specifically designed for WebComics that utilize structures that you do not require or want to make use of. There are a plentiful amount of themes in the WordPress repository that you can now take advantage of that give you tons of options you otherwise wouldn’t have had.
+The core reason to use Comic Easel above other WordPress theme's is that you are not limited to the basic ComicPress & Other themes that are specifically designed for WebComics that utilize structures that you do not require or want to make use of. There are a plentiful amount of themes in the WordPress repository that you can now take advantage of that give you tons of options you otherwise wouldn't have had.
 
-With Comic Easel’s extra taxonomies to control Character and Locations, you can provide your end readers with a plethora of information that wouldn’t have had before that is auto-generated. The Cast Page itself shows how many times a character was in a comic as well as the first comic they were seen in.
+With Comic Easel's extra taxonomies to control Character and Locations, you can provide your end readers with a plethora of information that wouldn't have had before that is auto-generated. The Cast Page itself shows how many times a character was in a comic as well as the first comic they were seen in.
 
-Features of 1.0
+= Features of 1.0 =
 
 Custom Post Type control of posts.
 Media Library handling of comics.
@@ -26,20 +26,21 @@ As many chapters/stories as you would like.
 Individual navigation per chapter or all.
 Character and Location settings per Comic
 
-Widgets
+= Widgets =
 
 Chapter Dropdown, brings you to the first comic in the chapter (story)
-Calendar display, show’s you what days comic posts were made on, can add images and links to backgrounds.
+Calendar display, show's you what days comic posts were made on, can add images and links to backgrounds.
 Recent Comics, a list of comics that have been posted as of late.
 Thumbnail, display a thumbnail of a random comic, or first/latest comic in a chapter (or all)
 
-Short Codes
+= Short Codes =
+
 - Shortcodes are simple embed statements that you can put into pages/post that display information.
 
 [comic-archive] Display a list of your comics by individual chapters or all.
 [cast-page] Display a list of all of your characters, how many comics they were in and when they first appeared
 
-Action Injection Locations
+= Action Injection Locations =
 
 A number of injection snippets that you add to your theme, mini navigation for the menubar, comic area and comic blost post area, including post-information is available to customize your theme out with auto generated information.
 
