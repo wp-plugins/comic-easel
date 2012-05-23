@@ -69,6 +69,7 @@ if (!function_exists('ceo_display_comic_navigation')) {
 		<?php
 	}
 	wp_reset_query();
+	// remove this if this is ever going into a sidebar ;/
 }
 
 // This is used inside ceo_display_comic_area()

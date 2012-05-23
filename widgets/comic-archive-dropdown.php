@@ -22,6 +22,7 @@ function ceo_comic_archive_jump_to_chapter() {
 	$output .= '<option class="level-select" value="">'.__('Select Story','comiceasel').'</option>';
 	if (!is_null($parent_chapters)) {
 		foreach($parent_chapters as $parent_chapter) {
+			$count = '';
 			$parent_args = array( 
 				'numberposts' => 1, 
 				'post_type' => 'comic', 
