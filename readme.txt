@@ -5,8 +5,11 @@ Requires at least: 3.0
 Tested up to: 3.4
 Stable tag: 1.0
 Donate link: http://frumph.net
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Comic Easel allows you to post webcomics to your theme.
+
 
 == Description ==
 
@@ -17,7 +20,6 @@ The core reason to use Comic Easel above other WordPress theme's is that you are
 With Comic Easel's extra taxonomies to control Character and Locations, you can provide your end readers with a plethora of information that wouldn't have had before that is auto-generated. The Cast Page itself shows how many times a character was in a comic as well as the first comic they were seen in.
 
 To Convert your existing ComicPress theme comics to Comic Easel's post type there is a plugin available called CP2CE.
-
 
 = Features of 1.0 =
 
@@ -40,7 +42,6 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 - `/?latest`  or `/?latest=<chapter-id>` in the url will automatically take the end user to the latest comic, or latest of a specific chapter
 - `/?random` in the url will redirect to a random comic out of all the comics.
 
-
 = Short Codes =
 
 Shortcodes are simple embed statements that you can put into pages/post that display information.
@@ -51,6 +52,7 @@ Shortcodes are simple embed statements that you can put into pages/post that dis
 = Action Injection Locations =
 
 A number of injection snippets that you add to your theme, mini navigation for the menubar, comic area and comic blost post area, including post-information is available to customize your theme out with auto generated information.
+
 
 == Installation == 
 
@@ -71,6 +73,16 @@ There are other "action" area's that you can put into your theme, not just the c
 
 `do_action('comic-post-info');` - For inside of the single/archive/search post pages posts, showing more comic info.
 
-== Screenshots == 
 
-1. The Comic Editor Section
+== Frequently Asked Questions ==
+
+None.
+
+== Changelog ==
+
+= 1.0 =
+Last Updated: 05/23/2012 10am Pacific
+
+
+
+
