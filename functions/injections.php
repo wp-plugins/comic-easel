@@ -47,7 +47,9 @@ if (!function_exists('ceo_display_comic_navigation')) {
 				<td class="comic-nav comic-nav-previous <?php if (!$prev_comic) { ?>comic-nav-inactive<?php } ?>"><?php if ($prev_comic) { ?><a href="<?php echo $prev_comic ?>"><?php echo $prev_text; ?></a><?php } else { echo $prev_text; } ?></td>
 				<td class="comic-nav comic-nav-next <?php if (!$next_comic) { ?>comic-nav-inactive<?php } ?>"><?php if ($next_comic) { ?><a href="<?php echo $next_comic ?>"><?php echo $next_text; ?></a><?php } else { echo $next_text; } ?></td>
 				<td class="comic-nav comic-nav-last <?php if ( get_permalink() == $last_comic ) { ?>comic-nav-inactive<?php } ?>"><?php if ( get_permalink() != $last_comic ) { ?><a href="<?php echo $last_comic ?>"><?php echo $last_text; ?></a><?php } else { echo $last_text; } ?></td>
+<?php if (ceo_pluginfo('enable_chapter_nav')) { ?>				
 				<td class="comic-nav comic-nav-jumpto"><?php ceo_comic_archive_jump_to_chapter(); ?></td>
+<?php } ?>
 			</tr>
 		</table>
 		<?php

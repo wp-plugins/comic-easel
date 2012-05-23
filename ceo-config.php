@@ -53,7 +53,8 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 */
 			foreach (array(
 				'click_comic_next',
-				'navigate_only_chapters'
+				'navigate_only_chapters',
+				'enable_chapter_nav'
 			) as $key) {
 				if (!isset($_REQUEST[$key])) $_REQUEST[$key] = 0;
 				$ceo_options[$key] = (bool)( $_REQUEST[$key] == 1 ? true : false );

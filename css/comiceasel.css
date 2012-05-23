@@ -136,3 +136,8 @@ table#comic-nav-wrapper {
     margin-right: 3px;
     display: block;
 }
+
+.level-select {
+    font-weight: 700;
+    background: #eee;
+}

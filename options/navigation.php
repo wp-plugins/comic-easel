@@ -29,6 +29,15 @@
 						<?php _e('When this is enabled, when the comic is mouse over and clicked it will go to the next comic in the chapter.','comiceasel'); ?>
 					</td>
 				</tr>
+				<tr class="alternate">
+					<th scope="row"><label for="enable_chapter_nav"><?php _e('Enable the chapter navigation drop down in the comic navigation?','comiceasel'); ?></label></th>
+					<td>
+						<input id="enable_chapter_nav" name="enable_chapter_nav" type="checkbox" value="1" <?php checked(true, $ceo_options['enable_chapter_nav']); ?> />
+					</td>
+					<td>
+						<?php _e('When this is enabled, a drop down archive box will appear in the navigation that lets you go to the start of each chapter','comiceasel'); ?>
+					</td>
+				</tr>				
 			</table>
 				
 		</div>

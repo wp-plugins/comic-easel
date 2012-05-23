@@ -8,36 +8,63 @@ Version: 1.02
 */
 
 function ceo_comic_archive_jump_to_chapter() {
-		$chapters = get_terms( 'chapters', 'orderby=name&order=desc&hide_empty=1' );
-		$output = '<form method="get">';
-		$output .= '<select onchange="document.location.href=this.options[this.selectedIndex].value;">';
-		$level = 1;
-		$output .= '<option class="level-0" value="">'.__('&nbsp;Select Story&nbsp;&nbsp;','comiceasel').'</option>';
-		if (!is_null($chapters)) {
-			foreach($chapters as $chapter) {
-				$args = array(
-						'numberposts' => 1,
-						'post_type' => 'comic',
-						'orderby' => 'post_date',
-						'order' => 'ASC',
-						'post_status' => 'publish',
-						'chapters' => $chapter->slug,
-						);					
-				$qposts = get_posts( $args );
-				if (is_array($qposts)) {
-					$qposts = reset($qposts);
-					$output .='<option class="level-'.$level.'" value="'.get_permalink($qposts->ID).'">'.$chapter->name.'</option>';
-				}
-				wp_reset_query();
-				$level++;
+	$args = array(
+		'pad_counts' => 1,
+		'orderby' => 'id',
+		'order' => 'DESC',
+		'hide_empty' => 0,
+		'parent' => 0
+	);
+	$parent_chapters = get_terms( 'chapters', $args );
+	$output = '<form method="get">';
+	$output .= '<select onchange="document.location.href=this.options[this.selectedIndex].value;">';
+	$level = 0;
+	$output .= '<option class="level-select" value="">'.__('Select Story','comiceasel').'</option>';
+	if (!is_null($parent_chapters)) {
+		foreach($parent_chapters as $parent_chapter) {
+			$parent_args = array( 
+				'numberposts' => 1, 
+				'post_type' => 'comic', 
+				'orderby' => 'post_date', 
+				'order' => 'ASC', 
+				'post_status' => 'publish', 
+				'chapters' => $parent_chapter->slug, 
+			);					
+			$qposts = get_posts( $parent_args );
+			if (is_array($qposts)) {
+				$qposts = reset($qposts);
+				if ($parent_chapter->count) $count = ' ('.$parent_chapter->count.') ';
+				$output .='<option class="level-0" value="'.get_permalink($qposts->ID).'">'.$parent_chapter->name.$count.'</option>';
 			}
+			wp_reset_query();
+			$child_chapters = get_term_children( $parent_chapter->term_id, 'chapters' );
+			foreach ($child_chapters as $child) {
+				$child_term = get_term_by( 'id', $child, 'chapters' );
+				if ($child_term->count) {
+					$child_args = array( 
+						'numberposts' => 1, 
+						'post_type' => 'comic',
+						'orderby' => 'post_date', 
+						'order' => 'ASC', 
+						'post_status' => 'publish', 
+						'chapters' => $child_term->slug 
+					);					
+					$qcposts = get_posts( $child_args );
+					if (is_array($qcposts)) {
+						$qcposts = reset($qcposts);
+						$output .= '<option class="level-1" value="' . get_permalink($qcposts->ID) . '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $child_term->name . ' ('.$child_term->count.') </option>';
+					}
+				}
+			}
+			wp_reset_query();
 		}
-		$output .= '</select>';
-		$output .= '<noscript>';
-		$output .= '<div><input type="submit" value="View" /></div>';
-		$output .= '</noscript>';
-		$output .= '</form>';
-		echo $output;
+	}
+	$output .= '</select>';
+	$output .= '<noscript>';
+	$output .= '<div><input type="submit" value="View" /></div>';
+	$output .= '</noscript>';
+	$output .= '</form>';
+	echo $output;
 }
 
 class ceo_comic_archive_dropdown_widget extends WP_Widget {

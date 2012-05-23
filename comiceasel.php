@@ -234,7 +234,8 @@ function ceo_load_options($reset = false) {
 			'disable_comic_on_home_page' => false,
 			'disable_comic_blog_on_home_page' => false,
 			'click_comic_next' => true,
-			'navigate_only_chapters' => true
+			'navigate_only_chapters' => true,
+			'enable_chapter_nav' => false
 		) as $field => $value) {
 			$ceo_config[$field] = $value;
 		}
