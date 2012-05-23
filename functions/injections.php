@@ -33,18 +33,6 @@ if (!function_exists('ceo_display_comic_navigation')) {
 	function ceo_display_comic_navigation() {
 		global $post, $wp_query;
 		
-		$args = array(
-				'numberposts' => 1,
-				'post_type' => 'comic',
-				'orderby' => 'post_date',
-				'order' => 'DESC',
-				'post_status' => 'publish'
-				);					
-		$qposts = get_posts( $args );
-		if (!empty($qposts)) {
-			$first_seen = $qposts[0]->post_title;
-			$first_seen_id = $qposts[0]->ID;
-		}
 		$first_comic = ceo_get_first_comic_permalink();
 		$first_text = __('&lsaquo;&lsaquo; First','easel');
 		$last_comic = ceo_get_last_comic_permalink();
@@ -80,6 +68,7 @@ if (!function_exists('ceo_display_comic_navigation')) {
 		</table>
 		<?php
 	}
+	wp_reset_query();
 }
 
 // This is used inside ceo_display_comic_area()
