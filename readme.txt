@@ -43,10 +43,10 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 = Short Codes =
 
-- Shortcodes are simple embed statements that you can put into pages/post that display information.
+Shortcodes are simple embed statements that you can put into pages/post that display information.
 
-[comic-archive] Display a list of your comics by individual chapters or all.
-[cast-page] Display a list of all of your characters, how many comics they were in and when they first appeared
+- `[comic-archive]` Display a list of your comics by individual chapters or all.
+- `[cast-page]` Display a list of all of your characters, how many comics they were in and when they first appeared
 
 = Action Injection Locations =
 
@@ -68,6 +68,8 @@ There are other "action" area's that you can put into your theme, not just the c
 `do_action('comic_blog_area');` - This is for the blog portion of the comic for the home page only.
 
 `do_action('comic-mini-navigation');` - For menubar's to have mini navigation (prev/next) in them.
+
+`do_action('comic-post-info');` - For inside of the single/archive/search post pages posts, showing more comic info.
 
 == Screenshots == 
 
