@@ -78,7 +78,7 @@ There are other "action" area's that you can put into your theme, not just the c
 
 = The permalinks are not working to go to the comic =
 
-Go to your settings -> permalinks and just click save again, and the wp_rewrite will refresh.
+Go to your settings -> permalinks and just click save, the wp_rewrite will refresh.  This generally happens after it is first installed and should not happen again.
 
 
 == Changelog ==
