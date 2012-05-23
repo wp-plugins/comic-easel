@@ -10,29 +10,36 @@ Comic Easel allows you to post webcomics to your theme.
 
 == Description ==
 
-To Convert your existing ComicPress theme comics to Comic Easel's post type there is a plugin available called CP2CE.
-
 Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost any WordPress theme. With just a few modifications of adding *injection* action locations into a theme, you can have the theme of your choice display a comic.
 
 The core reason to use Comic Easel above other WordPress theme's is that you are not limited to the basic ComicPress & Other themes that are specifically designed for WebComics that utilize structures that you do not require or want to make use of. There are a plentiful amount of themes in the WordPress repository that you can now take advantage of that give you tons of options you otherwise wouldn't have had.
 
 With Comic Easel's extra taxonomies to control Character and Locations, you can provide your end readers with a plethora of information that wouldn't have had before that is auto-generated. The Cast Page itself shows how many times a character was in a comic as well as the first comic they were seen in.
 
+To Convert your existing ComicPress theme comics to Comic Easel's post type there is a plugin available called CP2CE.
+
+
 = Features of 1.0 =
 
-Custom Post Type control of posts.
-Media Library handling of comics.
-As many chapters/stories as you would like.
-Individual navigation per chapter or all.
-Character and Location settings per Comic
-As many comic posts you can do in a day as you want.
+- Custom Post Type control of posts.
+- Media Library handling of comics.
+- As many chapters/stories as you would like.
+- Individual navigation per chapter or all.
+- Character and Location settings per Comic
+- As many comic posts you can do in a day as you want.
 
 = Widgets =
 
-Chapter Dropdown, brings you to the first comic in the chapter (story)
-Calendar display, show's you what days comic posts were made on, can add images and links to backgrounds.
-Recent Comics, a list of comics that have been posted as of late.
-Thumbnail, display a thumbnail of a random comic, or first/latest comic in a chapter (or all)
+- Chapter Dropdown, brings you to the first comic in the chapter (story)
+- Calendar display, show's you what days comic posts were made on, can add images and links to backgrounds.
+- Recent Comics, a list of comics that have been posted as of late.
+- Thumbnail, display a thumbnail of a random comic, or first/latest comic in a chapter (or all)
+
+= Redirects = 
+
+- `/?latest`  or `/?latest=<chapter-id>` in the url will automatically take the end user to the latest comic, or latest of a specific chapter
+- `/?random` in the url will redirect to a random comic out of all the comics.
+
 
 = Short Codes =
 

@@ -43,10 +43,16 @@ if (!function_exists('ceo_display_comic_navigation')) {
 		?>
 		<table id="comic-nav-wrapper">
 			<tr class="comic-nav-container">
-				<td class="comic-nav comic-nav-first <?php if ( get_permalink() == $first_comic ) { ?>comic-nav-inactive<?php } ?>"><?php if ( get_permalink() != $first_comic ) { ?><a href="<?php echo $first_comic ?>"><?php echo $first_text; ?></a><?php } else { echo $first_text; } ?></td>
-				<td class="comic-nav comic-nav-previous <?php if (!$prev_comic) { ?>comic-nav-inactive<?php } ?>"><?php if ($prev_comic) { ?><a href="<?php echo $prev_comic ?>"><?php echo $prev_text; ?></a><?php } else { echo $prev_text; } ?></td>
-				<td class="comic-nav comic-nav-next <?php if (!$next_comic) { ?>comic-nav-inactive<?php } ?>"><?php if ($next_comic) { ?><a href="<?php echo $next_comic ?>"><?php echo $next_text; ?></a><?php } else { echo $next_text; } ?></td>
-				<td class="comic-nav comic-nav-last <?php if ( get_permalink() == $last_comic ) { ?>comic-nav-inactive<?php } ?>"><?php if ( get_permalink() != $last_comic ) { ?><a href="<?php echo $last_comic ?>"><?php echo $last_text; ?></a><?php } else { echo $last_text; } ?></td>
+				<td class="comic-nav"><?php if ( get_permalink() != $first_comic ) { ?><a href="<?php echo $first_comic ?>" class="comic-nav-first<?php if ( get_permalink() == $first_comic ) { ?> comic-nav-inactive<?php } ?>"><?php echo $first_text; ?></a><?php } else { echo $first_text; } ?></td>
+				<td class="comic-nav"><?php if ($prev_comic) { ?><a href="<?php echo $prev_comic ?>" class="comic-nav-previous<?php if (!$prev_comic) { ?> comic-nav-inactive<?php } ?>"><?php echo $prev_text; ?></a><?php } else { echo $prev_text; } ?></td>
+<?php if (ceo_pluginfo('enable_comments_nav')) { ?>
+				<td class="comic-nav"><a href="<?php comments_link(); ?>" class="comic-nav-comments" title="<?php the_title(); ?>"><?php _e('Comments','comiceasel'); ?>(<span class="comic-nav-comment-count"><?php comments_number( '0', '1', '%' ); ?></span>)</a></td>
+<?php } ?>
+<?php if (ceo_pluginfo('enable_random_nav')) { ?>
+				<td class="comic-nav"><a href="<?php bloginfo('url') ?>?random&nocache=1" class="comic-nav-random" title="Random Comic"><?php _e('Random','comiceasel'); ?></a></td>
+<?php } ?>
+		<td class="comic-nav"><?php if ($next_comic) { ?><a href="<?php echo $next_comic ?>" class="comic-nav-next<?php if (!$next_comic) { ?> comic-nav-inactive<?php } ?>"><?php echo $next_text; ?></a><?php } else { echo $next_text; } ?></td>
+		<td class="comic-nav"><?php if ( get_permalink() != $last_comic ) { ?><a href="<?php echo $last_comic ?>" class="comic-nav-last<?php if ( get_permalink() == $last_comic ) { ?> comic-nav-inactive<?php } ?>"><?php echo $last_text; ?></a><?php } else { echo $last_text; } ?></td>
 <?php if (ceo_pluginfo('enable_chapter_nav')) { ?>				
 				<td class="comic-nav comic-nav-jumpto"><?php ceo_comic_archive_jump_to_chapter(); ?></td>
 <?php } ?>
