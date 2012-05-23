@@ -23,7 +23,7 @@ add_filter('the_excerpt_rss','ceo_insert_comic_into_feed');
 
 function ceo_insert_comic_into_archive($content) {
 	global $wp_query, $post;
-	if (is_archive() || is_search() && ($post->post-type == 'comic') && !is_single()) {
+	if (is_archive() || is_search() && ($post->post-type == 'comic') && !is_single() && !is_feed()) {
 		$content = '<p>'.ceo_display_comic_thumbnail('medium', $post) . '</p>' . $content;
 	}
 	return apply_filters('ceo_insert_comic_into_archive', $content);
