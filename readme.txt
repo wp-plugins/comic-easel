@@ -52,7 +52,7 @@ Shortcodes are simple embed statements that you can put into pages/post that dis
 
 A number of injection snippets that you add to your theme, mini navigation for the menubar, comic area and comic blost post area, including post-information is available to customize your theme out with auto generated information.
 
-== Other Notes == 
+== Installation == 
 
 = Modifying themes to use =
 
