@@ -123,7 +123,8 @@ table#comic-nav-wrapper {
 }
 
 .comic-archive-date {
-    width: 130px;
+    width: 88px;
+    display: inline-block;
 }
 
 .comic-archive-thumbnail {
@@ -138,6 +139,10 @@ table#comic-nav-wrapper {
     list-style-type: none;
     float: right;
     width: 376px;
+}
+
+.comic-list-alt {
+    background: #f7f7f7;
 }
 
 .level-select {
