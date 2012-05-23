@@ -150,3 +150,7 @@ table#comic-nav-wrapper {
     font-weight: 700;
     background: #eee;
 }
+
+#comic-foot {
+    text-align: center;
+}
