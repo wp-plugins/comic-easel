@@ -110,17 +110,13 @@ table#comic-nav-wrapper {
 /* Archive Shortcode */
 
 .comic-archive-chapter-wrap {
+    width: 530px;
     margin-bottom: 30px;
-}
-
-.comic-archive-wrap {
-    padding: 0;
-    list-style-type: none;
 }
 
 .comic-archive-chapter-description {
     padding: 10px;
- }
+}
 
 .comic-archive-title {
     margin-left: 10px;
@@ -135,6 +131,13 @@ table#comic-nav-wrapper {
     float: left;
     margin-right: 3px;
     display: block;
+}
+
+.comic-archive-list-wrap {
+    padding: 0;
+    list-style-type: none;
+    float: right;
+    width: 376px;
 }
 
 .level-select {

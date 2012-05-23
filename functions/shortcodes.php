@@ -107,29 +107,31 @@ function ceo_archive_list_all($order = 'ASC', $thumbnail = 0) {
 	if (is_null($all_chapters)) { echo 'There are no chapters available.'; return; }
 	$output = '';
 	foreach ($all_chapters as $chapter) {
-		$output .= '<div class="comic-archive-chapter-wrap">';
-		$output .= '<h3 class="comic-archive-chapter">'.$chapter->name.'</h3>';
-		$output .= '<div class="comic-archive-chapter-description">'.$chapter->description.'</div>';			
-		$args = array(
-				'numberposts' => -1,
-				'post_type' => 'comic',
-				'orderby' => 'post_date',
-				'order' => $order,
-				'post_status' => 'publish',
-				'chapters' => $chapter->slug
-				);					
-		$qposts = get_posts( $args );
-		$archive_count = 0;
-		$output .= '<ul class="comic-archive-wrap">';
-		if ($thumbnail) {
-			$output .= '<div class="comic-archive-thumbnail">'.get_the_post_thumbnail($qposts[0]->ID, 'thumbnail').'</div>';
-		}			
-		foreach ($qposts as $qpost) {
-			$archive_count++;
-			$output .= '<li class="comic-list comic-list-'.$archive_count.'"><span class="comic-archive-date">'.get_the_time('M j, Y', $qpost->ID).'</span><span class="comic-archive-title"><a href="'.get_permalink($qpost->ID).'" rel="bookmark" title="'.__('Permanent Link:','comiceasel').' '.$qpost->post_title.'">'.$qpost->post_title.'</a></span></li>';
+		if ($chapter->count) {
+			$output .= '<div class="comic-archive-chapter-wrap">';
+			$output .= '<h3 class="comic-archive-chapter">'.$chapter->name.'</h3>';
+			$output .= '<div class="comic-archive-chapter-description">'.$chapter->description.'</div>';			
+			$args = array(
+					'numberposts' => -1,
+					'post_type' => 'comic',
+					'orderby' => 'post_date',
+					'order' => $order,
+					'post_status' => 'publish',
+					'chapters' => $chapter->slug
+					);					
+			$qposts = get_posts( $args );
+			$archive_count = 0;
+			if ($thumbnail) {
+				$output .= '<div class="comic-archive-thumbnail">'.get_the_post_thumbnail($qposts[0]->ID, 'thumbnail').'</div>';
+			}
+			$output .= '<div class="comic-archive-list-wrap">';
+			foreach ($qposts as $qpost) {
+				$archive_count++;
+				$output .= '<li class="comic-list comic-list-'.$archive_count.'"><span class="comic-archive-date">'.get_the_time('M j, Y', $qpost->ID).'</span><span class="comic-archive-title"><a href="'.get_permalink($qpost->ID).'" rel="bookmark" title="'.__('Permanent Link:','comiceasel').' '.$qpost->post_title.'">'.$qpost->post_title.'</a></span></li>';
+			}
+			$output .= '</div>';
+			$output .= '<div style="clear:both;"></div></div>';
 		}
-		$output .= '</ul>';
-		$output .= '<div style="clear:both;"></div></div>';
 	}
 	wp_reset_query();
 	echo apply_filters('ceo_archive_list_all', $output);
