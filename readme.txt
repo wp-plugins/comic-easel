@@ -76,12 +76,21 @@ There are other "action" area's that you can put into your theme, not just the c
 
 == Frequently Asked Questions ==
 
-None.
+= The permalinks are not working to go to the comic =
+
+Go to your settings -> permalinks and just click save again, and the wp_rewrite will refresh.
+
 
 == Changelog ==
 
 = 1.0 =
 Last Updated: 05/23/2012 10am Pacific
+
+
+== Upgrade Notice ==
+
+= 1.0 =
+Additions and fixes of 1.0 - reinstall it.
 
 
 
