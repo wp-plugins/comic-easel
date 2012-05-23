@@ -36,7 +36,6 @@ function ceo_comic_archive_jump_to_chapter() {
 				if ($parent_chapter->count) $count = ' ('.$parent_chapter->count.') ';
 				$output .='<option class="level-0" value="'.get_permalink($qposts->ID).'">'.$parent_chapter->name.$count.'</option>';
 			}
-			wp_reset_query();
 			$child_chapters = get_term_children( $parent_chapter->term_id, 'chapters' );
 			foreach ($child_chapters as $child) {
 				$child_term = get_term_by( 'id', $child, 'chapters' );
@@ -56,7 +55,6 @@ function ceo_comic_archive_jump_to_chapter() {
 					}
 				}
 			}
-			wp_reset_query();
 		}
 	}
 	$output .= '</select>';

@@ -38,7 +38,7 @@
 						<?php _e('When this is enabled, a drop down archive box will appear in the navigation that lets you go to the start of each chapter','comiceasel'); ?>
 					</td>
 				</tr>
-				<tr class="alternate">
+				<tr>
 					<th scope="row"><label for="enable_random_nav"><?php _e('Enable the random comic link in the comic navigation?','comiceasel'); ?></label></th>
 					<td>
 						<input id="enable_random_nav" name="enable_random_nav" type="checkbox" value="1" <?php checked(true, $ceo_options['enable_random_nav']); ?> />
@@ -56,6 +56,15 @@
 						<?php _e('When this is enabled, a link will appear in the navigation that lets you go to the comments section of the current post, it also shows how many comments there currently are.','comiceasel'); ?>
 					</td>
 				</tr>
+				<tr>
+					<th scope="row"><label for="enable_embed_nav"><?php _e('Enable the "embed this comic" textarea in the comic navigation?','comiceasel'); ?></label></th>
+					<td>
+						<input id="enable_embed_nav" name="enable_embed_nav" type="checkbox" value="1" <?php checked(true, $ceo_options['enable_embed_nav']); ?> />
+					</td>
+					<td>
+						<?php _e('When this is enabled, a textarea will appear under the navigation with the href and image link to have users embed this comic on their site.','comiceasel'); ?>
+					</td>
+				</tr>				
 			</table>
 		</div>
 		

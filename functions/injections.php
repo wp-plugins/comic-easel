@@ -32,6 +32,19 @@ add_action('comic-area', 'ceo_display_comic_area');
 if (!function_exists('ceo_display_comic_navigation')) {
 	function ceo_display_comic_navigation() {
 		global $post, $wp_query;
+		
+		$args = array(
+				'numberposts' => 1,
+				'post_type' => 'comic',
+				'orderby' => 'post_date',
+				'order' => 'DESC',
+				'post_status' => 'publish'
+				);					
+		$qposts = get_posts( $args );
+		if (!empty($qposts)) {
+			$first_seen = $qposts[0]->post_title;
+			$first_seen_id = $qposts[0]->ID;
+		}
 		$first_comic = ceo_get_first_comic_permalink();
 		$first_text = __('&lsaquo;&lsaquo; First','easel');
 		$last_comic = ceo_get_last_comic_permalink();
@@ -45,7 +58,7 @@ if (!function_exists('ceo_display_comic_navigation')) {
 			<tr class="comic-nav-container">
 				<td class="comic-nav"><?php if ( get_permalink() != $first_comic ) { ?><a href="<?php echo $first_comic ?>" class="comic-nav-first<?php if ( get_permalink() == $first_comic ) { ?> comic-nav-inactive<?php } ?>"><?php echo $first_text; ?></a><?php } else { echo $first_text; } ?></td>
 				<td class="comic-nav"><?php if ($prev_comic) { ?><a href="<?php echo $prev_comic ?>" class="comic-nav-previous<?php if (!$prev_comic) { ?> comic-nav-inactive<?php } ?>"><?php echo $prev_text; ?></a><?php } else { echo $prev_text; } ?></td>
-<?php if (ceo_pluginfo('enable_comments_nav')) { ?>
+<?php if (ceo_pluginfo('enable_comment_nav')) { ?>
 				<td class="comic-nav"><a href="<?php comments_link(); ?>" class="comic-nav-comments" title="<?php the_title(); ?>"><?php _e('Comments','comiceasel'); ?>(<span class="comic-nav-comment-count"><?php comments_number( '0', '1', '%' ); ?></span>)</a></td>
 <?php } ?>
 <?php if (ceo_pluginfo('enable_random_nav')) { ?>
@@ -57,6 +70,13 @@ if (!function_exists('ceo_display_comic_navigation')) {
 				<td class="comic-nav comic-nav-jumpto"><?php ceo_comic_archive_jump_to_chapter(); ?></td>
 <?php } ?>
 			</tr>
+<?php if (ceo_pluginfo('enable_embed_nav')) { ?>
+			<tr>
+				<td>
+					<textarea rows="2" class="comic-nav-embed"><?php echo ceo_display_comic_thumbnail('full', $post); ?></textarea>
+				</td>
+			</tr>
+<?php } ?> 
 		</table>
 		<?php
 	}

@@ -240,7 +240,8 @@ function ceo_load_options($reset = false) {
 			'navigate_only_chapters' => true,
 			'enable_chapter_nav' => false,
 			'enable_comments_nav' => true,
-			'enable_random_nav' => true
+			'enable_random_nav' => true,
+			'enable_embed_nav' => false
 		) as $field => $value) {
 			$ceo_config[$field] = $value;
 		}

@@ -6,12 +6,9 @@ Defaults for the Comic Easel Elements.
 table#comic-nav-wrapper {
     background: none;
     border: 0;
-	width: 100%;
 	text-align: center;
 	border-collapse: collapse;
-}
-
-    tr.comic-nav-container {
+	margin: 0 auto;
 	    background: #333 !important;
 		margin: 6px auto;
 		border: solid 1px #000;
@@ -21,7 +18,7 @@ table#comic-nav-wrapper {
 	    border-radius: 5px;
 	    padding: 3px;
 	    display: inline-block;
-	}
+}
 
 	td.comic-nav {
 	    border: 0 !important;
@@ -35,6 +32,10 @@ table#comic-nav-wrapper {
 	
     .comic-nav a:hover {
 	    color: #fffc00;
+	}
+	
+	.comic-nav-embed {
+	    width: 99%;
 	}
 	
 .infotext {
