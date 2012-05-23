@@ -25,6 +25,7 @@ Media Library handling of comics.
 As many chapters/stories as you would like.
 Individual navigation per chapter or all.
 Character and Location settings per Comic
+As many comic posts you can do in a day as you want.
 
 = Widgets =
 
