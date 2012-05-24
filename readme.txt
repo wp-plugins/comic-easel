@@ -48,7 +48,11 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 
 Shortcodes are simple embed statements that you can put into pages/post that display information.
 
-- `[comic-archive]` Display a list of your comics by individual chapters or all.
+- `[comic-archive list=0/1 chapter=# thumbnail=0/1]` Display a list of your comics by individual chapters or all.
+* list=0 (default) - All chapters, not in parent->child relationship
+* chapter=# if list=0 and chapter=# (# = chapter ID number) do a singular view
+* list=1 if list=1 do it for series that has parent->child book->chapter (chapter= will not work)
+* thumbnail=1 display the thumbnail of the first post it finds 
 - `[cast-page]` Display a list of all of your characters, how many comics they were in and when they first appeared
 
 = Action Injection Locations =
@@ -86,7 +90,7 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0 =
-Last Updated: 05/24/2012 2:00am Pacific
+Last Updated: 05/24/2012 2:00pm Pacific
 
 
 == Upgrade Notice ==

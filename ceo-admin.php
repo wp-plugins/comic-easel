@@ -20,7 +20,8 @@ function ceo_add_menu_pages() {
 	$config_hook = add_submenu_page($menu_location, $plugin_title . ' - ' . $config_title, $config_title, 'edit_theme_options', 'comiceasel-config', 'ceo_manager_config');
 	add_action('admin_head-' . $config_hook, 'ceo_admin_page_head');
 	add_action('admin_print_scripts-' . $config_hook, 'ceo_admin_print_scripts');
-	add_action('admin_print_styles-' . $config_hook, 'ceo_admin_print_styles');	
+	add_action('admin_print_styles-' . $config_hook, 'ceo_admin_print_styles');
+	ceo_enqueue_admin_cpt_style('comic', 'comic-admin-editor-style', ceo_pluginfo('plugin_url').'/css/admin-editor.css');	
 }
 
 function ceo_load_scripts_chapter_manager() {
@@ -71,5 +72,30 @@ function ceo_add_dashboard_widgets() {
 	wp_add_dashboard_widget('ceo_dashboard_widget', 'Frumph.NET News', 'ceo_dashboard_feed_widget');	
 }
 
+function ceo_enqueue_admin_cpt_style( $cpt, $handle, $src = false, $deps = array(), $ver = false, $media = 'all' ) {
+ 
+	/* Check the admin page we are on. */
+	global $pagenow;
+ 
+	/* Default to null to prevent enqueuing. */
+	$enqueue = null;
+ 
+	/* Enqueue style only if we are on the correct CPT editor page. */
+	if ( isset($_GET['post_type']) && $_GET['post_type'] == $cpt && $pagenow == "post-new.php" ) {
+		$enqueue = true;
+	}
+ 
+	/* Enqueue style only if we are on the correct CPT editor page. */
+	if ( isset($_GET['post']) && $pagenow == "post.php" ) {
+		$post_id = $_GET['post'];
+		$post_obj = get_post( $post_id );
+		if( $post_obj->post_type == $cpt )
+			$enqueue = true;
+	}
+ 
+	/* Only enqueue if editor page is the correct CPT. */
+	if( $enqueue )
+		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+}
 
 ?>

@@ -117,8 +117,16 @@ table#comic-nav-wrapper {
     margin-bottom: 30px;
 }
 
+.comic-archive-series-description {
+    padding: 20px;
+}
+
 .comic-archive-chapter-description {
     padding: 10px;
+}
+
+h2.comic-archive-series-title {
+    text-align: center;
 }
 
 .comic-archive-title {
