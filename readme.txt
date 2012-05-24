@@ -29,6 +29,8 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 - Individual navigation per chapter or all.
 - Character and Location settings per Comic
 - As many comic posts you can do in a day as you want.
+- Hovertext on the comic
+- And More!
 
 = Widgets =
 
@@ -84,7 +86,7 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0 =
-Last Updated: 05/24/2012 12:45am Pacific
+Last Updated: 05/24/2012 2:00am Pacific
 
 
 == Upgrade Notice ==

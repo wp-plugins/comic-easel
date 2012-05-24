@@ -61,8 +61,7 @@ function ceo_manage_comic_columns($column_name, $id) {
 	} // end switch
 }
 
-function ceo_edit_comic_in_post($post) { 
-?>
+function ceo_edit_comic_in_post($post) {  ?>
 <div class="inside" style="overflow: hidden; width: 100%;">
 	<div id="comicthumbs">
 		<center>
@@ -74,15 +73,10 @@ function ceo_edit_comic_in_post($post) {
 }
 
 function ceo_edit_hovertext_in_post($post) { 
+	wp_nonce_field( basename( __FILE__ ), 'comic_hovertext_nonce' );
 ?>
-<div class="inside" style="overflow: hidden">
-	<table>
-		<td valign="top">
-			Alt Text (Hover) - This is text that is displayed when the mouse is over the comic.<br />
-		</td>
-	</tr>
-	</table>
-</div>
+	The text placed here will appear when you mouse over the comic.<br />
+	<textarea name="comic-hovertext" id="comic-hovertext" class="admin-comic-hovertext" style="width:100%"><?php echo esc_attr( get_post_meta( $post->ID, 'hovertext', true ) ); ?></textarea>
 <?php
 }
 
@@ -93,15 +87,40 @@ function ceo_add_comic_in_post() {
 	add_meta_box('ceo_hovertext_in_post', __('Alt (Hover) Text', 'comiceasel'), 'ceo_edit_hovertext_in_post', 'comic', 'normal', 'high');
 }
 
-function ceo_handle_edit_save_comic($post_id) {
-/*	$moods_directory = ceo_pluginfo('moods_directory');
-	if (!empty($moods_directory) && $moods_directory != 'none') {
-		$currentmood = get_post_meta( $post_id, "mood", true );
-		if (isset($_POST['postmood']) && $_POST['postmood'] !== $currentmood) {
-			$postmood = $_POST['postmood'];
-			update_post_meta($post_id, 'mood', $postmood);
-		}
-	} */
+add_action( 'save_post', 'ceo_handle_edit_save_comic', 10, 2 );
+
+function ceo_handle_edit_save_comic($post_id, $post) {
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['comic_hovertext_nonce'] ) || !wp_verify_nonce( $_POST['comic_hovertext_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+	
+	/* Get the post type object. */
+	$post_type = get_post_type_object( $post->post_type );
+	
+	/* Check if the current user has permission to edit the post. */
+	if ( !current_user_can( $post_type->cap->edit_post, $post_id ) )
+		return $post_id;
+	
+	/* Get the posted data and sanitize it for use as an HTML class. */
+	$new_meta_value = ( isset( $_POST['comic-hovertext'] ) ? esc_textarea( $_POST['comic-hovertext'] ) : '' );
+	
+	/* Get the meta key. */
+	$meta_key = 'hovertext';
+	
+	/* Get the meta value of the custom field key. */
+	$meta_value = get_post_meta( $post_id, $meta_key, true );
+	
+	/* If a new meta value was added and there was no previous value, add it. */
+	if ( $new_meta_value && '' == $meta_value )
+		add_post_meta( $post_id, $meta_key, $new_meta_value, true );
+	
+	/* If the new meta value does not match the old value, update it. */
+	elseif ( $new_meta_value && $new_meta_value != $meta_value )
+		update_post_meta( $post_id, $meta_key, $new_meta_value );
+	
+	/* If there is no new meta value but an old value exists, delete it. */
+	elseif ( '' == $new_meta_value && $meta_value )
+		delete_post_meta( $post_id, $meta_key, $meta_value );
 }
 
 

@@ -27,7 +27,7 @@ function ceo_the_hovertext($override_post = null) {
 	return (empty($hovertext)) ? get_the_title($post_to_use->ID) : $hovertext;
 }
 
-
+// We use this type of query so that $post is set, it's already set with is_single - but needs to be set on the home page
 function ceo_display_comic_area() {
 	global $wp_query, $post;
 	if (is_single()) {
@@ -47,8 +47,6 @@ function ceo_display_comic_area() {
 		}
 	}
 }
-
-
 
 // Do the thumbnail display functions here.
 if (!function_exists('ceo_display_comic_thumbnail')) {
