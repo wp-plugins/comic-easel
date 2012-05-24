@@ -60,8 +60,15 @@ if (!function_exists('ceo_display_comic_navigation')) {
 			</tr>
 <?php if (ceo_pluginfo('enable_embed_nav')) { ?>
 			<tr>
-				<td>
-					<textarea rows="2" class="comic-nav-embed"><?php echo ceo_display_comic_thumbnail('full', $post); ?></textarea>
+				<td class="comic-nav">
+					<?php 
+						$post_image_id = get_post_thumbnail_id($post->ID);
+						$thumbnail = wp_get_attachment_image_src( $post_image_id, 'full', false);
+						if (is_array($thumbnail)) { 
+							$thumbnail = reset($thumbnail);
+							echo $thumbnail;
+						}
+					?>
 				</td>
 			</tr>
 <?php } ?> 
@@ -213,4 +220,20 @@ global $post, $wp_query; ?>
 		</div>
 <?php 
 }
+
+add_filter('pre_get_posts', 'ceo_query_post_type');
+
+function ceo_query_post_type($query) {
+	if (is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+		$post_type = get_query_var('post_type');
+		if($post_type) :
+			$post_type = $post_type;
+		else:
+			$post_type = array('post','comic');
+			$query->set('post_type',$post_type);
+		endif;
+		return $query;
+	}
+}
+
 ?>

@@ -54,7 +54,7 @@ function ceo_initialize_post_types() {
 				'show_ui' => true,
 				'query_var' => true,
 				'capability_type' => 'post',
-//				'taxonomies' => array( 'post_tag' ),
+				'taxonomies' => array( 'post_tag' ),
 				'rewrite' => array( 'slug' => 'comic', 'with_front' => true ),
 				'hierarchical' => false,
 				'can_export' => true,
@@ -136,6 +136,7 @@ function ceo_initialize_post_types() {
 				'rewrite' => array( 'slug' => 'location' ),
 				));
 
+	register_taxonomy_for_object_type('post_tag', 'comic');
 	register_taxonomy_for_object_type('chapters', 'comic');
 	register_taxonomy_for_object_type('characters', 'comic');
 	register_taxonomy_for_object_type('locations', 'comic');

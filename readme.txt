@@ -84,7 +84,7 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0 =
-Last Updated: 05/23/2012 10am Pacific
+Last Updated: 05/24/2012 12:45am Pacific
 
 
 == Upgrade Notice ==

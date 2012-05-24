@@ -5,14 +5,14 @@ add_filter('manage_edit-comic_columns', 'ceo_add_new_comic_columns');
 function ceo_add_new_comic_columns($comic_columns) {
 	$new_columns['cb'] = '<input type="checkbox" />';
 
-	$new_columns['title'] = _x('Comic Title Name', 'column name');
+	$new_columns['title'] = __('Comic Title', 'comiceasel');
  
-	$new_columns['chapter'] = __('Chapter','easel');
-	$new_columns['characters'] = __('Characters','easel');
-	$new_columns['locations'] = __('Location','easel');
- 
+	$new_columns['chapter'] = __('Chapter','comiceasel');
+	$new_columns['characters'] = __('Characters','comiceasel');
+	$new_columns['locations'] = __('Location','comiceasel');
+	$new_columns['post_tag'] = __('Tags', 'comiceasel');
 	$new_columns['date'] = _x('Date', 'column name');
-	$new_columns['comicimages'] = _x('Comic', 'column name');
+	$new_columns['comicimages'] = __('Thumbnail', 'comiceasel');
  
 	return $new_columns;
 }
