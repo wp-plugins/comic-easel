@@ -49,18 +49,16 @@ function ceo_display_comic_area() {
 }
 
 // Do the thumbnail display functions here.
-if (!function_exists('ceo_display_comic_thumbnail')) {
-	function ceo_display_comic_thumbnail($thumbnail_size = 'thumbnail', $override_post = null) {
-		global $post;
-		$thumbnail = '';
-		$post_to_use = !empty($override_post) ? $override_post : $post;
-		
-		if ( has_post_thumbnail($post_to_use->ID) ) {
-			$output =  '<a href="'.get_permalink($post_to_use->ID).'" rel="bookmark" title="'.get_the_title().'">'.get_the_post_thumbnail($post_to_use->ID, $thumbnail_size).'</a>'."\r\n";
-		} else {
+function ceo_display_comic_thumbnail($thumbnail_size = 'thumbnail', $override_post = null) {
+	global $post;
+	$thumbnail = '';
+	$post_to_use = !empty($override_post) ? $override_post : $post;
+	
+	if ( has_post_thumbnail($post_to_use->ID) ) {
+		$output =  '<a href="'.get_permalink($post_to_use->ID).'" rel="bookmark" title="'.get_the_title().'">'.get_the_post_thumbnail($post_to_use->ID, $thumbnail_size).'</a>'."\r\n";
+	} else {
 //			$output = "No Thumbnail Found.";
-		}
-		return apply_filters('easel_display_comic_thumbnail', $output);
 	}
+	return apply_filters('easel_display_comic_thumbnail', $output);
 }
-
+?>

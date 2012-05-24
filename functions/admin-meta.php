@@ -62,12 +62,10 @@ function ceo_manage_comic_columns($column_name, $id) {
 }
 
 function ceo_edit_comic_in_post($post) {  ?>
-<div class="inside" style="overflow: hidden; width: 100%;">
-	<div id="comicthumbs">
-		<center>
-		<?php echo ceo_display_comic_thumbnail('thumbnail', $post); ?><br />
-		</center>
-	</div>
+<div class="admin-comicbox" style="margin:0; padding:0; overflow:hidden;">
+	<center>
+	<?php echo ceo_display_comic_thumbnail('medium', $post); ?><br />
+	</center>
 </div>
 <?php
 }

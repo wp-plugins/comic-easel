@@ -16,17 +16,11 @@ function ceo_add_menu_pages() {
 	$debug_title = __('Debug', 'comiceasel');
 	
 	// the ceo_pluginfo used here actually initiates it.
+//	$debug_hook = add_submenu_page($menu_location, $plugin_title . ' - ' . $debug_title, $debug_title, 'edit_theme_options', 'comiceasel-debug', 'ceo_debug');
 	$config_hook = add_submenu_page($menu_location, $plugin_title . ' - ' . $config_title, $config_title, 'edit_theme_options', 'comiceasel-config', 'ceo_manager_config');
 	add_action('admin_head-' . $config_hook, 'ceo_admin_page_head');
 	add_action('admin_print_scripts-' . $config_hook, 'ceo_admin_print_scripts');
 	add_action('admin_print_styles-' . $config_hook, 'ceo_admin_print_styles');	
-	
-//	$debug_hook = add_submenu_page($menu_location, $plugin_title . ' - ' . $debug_title, $debug_title, 'edit_theme_options', 'comiceasel-debug', 'ceo_debug');
-
-	// post_type is only found on the post-new.php with $_GET, so when the $pagenow is post.php it will not be able to strictly determine the post type so it will be executed on all already made post/page edits
-	if ( (isset($_GET['post_type']) && $_GET['post_type'] == 'comic') || $post_type == 'comic') {
-		 
-	}
 }
 
 function ceo_load_scripts_chapter_manager() {
@@ -46,6 +40,7 @@ function ceo_admin_print_styles() {
 	wp_admin_css('css/ie');
 	wp_enqueue_style('comiceasel-options-style', ceo_pluginfo('plugin_url') . '/css/config.css');
 }
+
 
 function ceo_admin_page_head() { ?>
 	<!--[if lt ie 8]> <style> div.show { position: static; margin-top: 1px; } #eadmin div.off { height: 22px; } </style> <![endif]-->

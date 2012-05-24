@@ -144,24 +144,6 @@ function ceo_initialize_post_types() {
 
 // THIS STUFF ONLY RUNS IN THE WP-ADMIN
 if (is_admin()) {
-	
-	// check if this is a easel theme, if not, dont execute.
-	// This will be removed since actions can be added to any theme.
-/*	if (strpos(get_template_directory(), 'easel')  == false) {
-		if( substr( $_SERVER[ 'PHP_SELF' ], -19 ) != '/wp-admin/index.php' ) return;
-		
-		function ceo_no_ceo_theme() {
-			$output = '<div class="error">';
-			$output .= '<h2>'.__('Comic Easel Error','comiceasel').'</h2>';
-			$output .= __('The current theme is not an Easel theme; Comic Easel will not load.','comiceasel').'<br />';
-			$output .='<br />';
-			$output .='</div>';
-			echo $output;
-		}
-		
-		add_action( 'admin_notices', 'ceo_no_ceo_theme' );
-		return;
-	} */
 	// only load the plugin code of we're in the administration part of WordPress.
 	@require('ceo-admin.php');
 	@require('functions/admin-meta.php');
@@ -175,7 +157,6 @@ function ceo_run_css() {
 	wp_register_style('comiceasel-style', ceo_pluginfo('plugin_url').'/css/comiceasel.css');
 	wp_enqueue_style('comiceasel-style');
 }
-
 
 // Flush Rewrite Rules & create chapters
 register_activation_hook( __FILE__, 'ceo_flush_rewrite' );
