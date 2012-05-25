@@ -10,7 +10,7 @@ function ceo_add_new_comic_columns($comic_columns) {
 	$new_columns['chapter'] = __('Chapter','comiceasel');
 	$new_columns['characters'] = __('Characters','comiceasel');
 	$new_columns['locations'] = __('Location','comiceasel');
-	$new_columns['post_tag'] = __('Tags', 'comiceasel');
+	$new_columns['tags'] = __('Tags', 'comiceasel');
 	$new_columns['date'] = _x('Date', 'column name');
 	$new_columns['comicimages'] = __('Thumbnail', 'comiceasel');
  
