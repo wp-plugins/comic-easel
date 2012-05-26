@@ -7,7 +7,7 @@ Version: 1.0.1
 Author: Philip M. Hofer (Frumph)
 Author URI: http://frumph.net/
 
-Copyright 2010 Philip M. Hofer (Frumph)  (email : philip@frumph.net)
+Copyright 2012 Philip M. Hofer (Frumph)  (email : philip@frumph.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -59,6 +59,9 @@ function ceo_initialize_post_types() {
 				'hierarchical' => false,
 				'can_export' => true,
 				'menu_position' => 5,
+				'exclude_from_search' => false,
+				'has_archive' => true,
+				'query_var' => true,
 				'menu_icon' => ceo_pluginfo('plugin_url') . '/images/ceo-icon.png',
 				'supports' => array( 'title', 'editor', 'excerpt', 'author', 'comments', 'thumbnail', 'custom-fields' ),
 				'description' => 'Post type for Comics'
