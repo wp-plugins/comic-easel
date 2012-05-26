@@ -19,6 +19,7 @@ function ceo_archive_list_series($thumbnail = 0) {
 	if (is_array($parent_chapters)) {
 		foreach($parent_chapters as $parent_chapter) {
 			$output .= '<h2 class="comic-archive-series-title">'.$parent_chapter->name.'</h2>';
+			$output .= '<div class="comic-archive-image-'.$parent_chapter->slug.'"></div>';
 			$output .= '<div class="comic-archive-series-description">'.$parent_chapter->description.'</div>';
 			$child_chapters = get_term_children( $parent_chapter->term_id, 'chapters' );
 			foreach ($child_chapters as $child) {
@@ -26,6 +27,7 @@ function ceo_archive_list_series($thumbnail = 0) {
 				if ($child_term->count) {
 					$output .= '<div class="comic-archive-chapter-wrap">';
 					$output .= '<h3 class="comic-archive-chapter-title">'.$child_term->name.'</h3>';
+					$output .= '<div class="comic-archive-image-'.$child_term->slug.'"></div>';
 					$output .= '<div class="comic-archive-chapter-description">'.$child_term->description.'</div>';
 					$child_args = array( 
 							'numberposts' => -1, 
@@ -126,6 +128,7 @@ function ceo_archive_list_single($chapter = 0, $order = 'ASC', $thumbnail = 0) {
 	if (is_null($single_chapter)) { echo "Invalid Chapter Specified"; return; }
 	$output .= '<div class="comic-archive-chapter-wrap">';
 	$output .= '<h3 class="comic-archive-chapter">'.$single_chapter->name.'</h3>';
+	$output .= '<div class="comic-archive-image-'.$single_chapter->slug.'"></div>';
 	$output .= '<div class="comic-archive-chapter-description">'.$single_chapter->description.'</div>';
 	$args = array(
 			'numberposts' => -1,
@@ -162,6 +165,7 @@ function ceo_archive_list_all($order = 'ASC', $thumbnail = 0) {
 		if ($chapter->count) {
 			$output .= '<div class="comic-archive-chapter-wrap">';
 			$output .= '<h3 class="comic-archive-chapter">'.$chapter->name.'</h3>';
+			$output .= '<div class="comic-archive-image-'.$chapter->slug.'"></div>';
 			$output .= '<div class="comic-archive-chapter-description">'.$chapter->description.'</div>';			
 			$args = array(
 					'numberposts' => -1,

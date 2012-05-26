@@ -90,7 +90,8 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0 =
-Last Updated: 05/25/2012 6:36am Pacific
+Last Updated: 05/25/2012 9:51pm Pacific
+- Added div skinning for an image under the chapter name to make chapter images, for example slug name of the chapter is text-chapter, it will be .comic-archive-image-test-chapter {}
 
 
 == Upgrade Notice ==
