@@ -48,7 +48,6 @@ function ceo_archive_list_series($thumbnail = 0) {
 					}
 					$output .= '</div>';
 					$output .= '<div style="clear:both;"></div></div>';	
-					$output .= '</div>';
 				}
 			}
 		}
