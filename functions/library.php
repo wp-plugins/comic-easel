@@ -13,3 +13,21 @@ function ceo_get_sidebar($location = '') {
 		</div>
 	<?php }
 }
+
+function ceo_change_prev_rel_link_two($object) {
+	global $post;
+//	if ($post->post_type=='comic') $link='<link rel="previous" href="'.ceo_get_previous_comic_permalink().'" />'."\r\n";
+	if ($post->post_type == 'comic') $link=false;
+	return $link;
+}
+
+add_filter('previous_post_rel_link', 'ceo_change_prev_rel_link_two', $link);
+
+function ceo_change_next_rel_link_two($object) {
+	global $post;
+//	if ($post->post_type=='comic') $link='<link rel="next" href="'.ceo_get_next_comic_permalink().'" />'."\r\n";
+	if ($post->post_type == 'comic') $link=false;
+	return $link;
+}
+
+add_filter('next_post_rel_link', 'ceo_change_next_rel_link_two', $link);

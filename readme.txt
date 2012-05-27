@@ -102,9 +102,13 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 
 == Changelog ==
 
-= 1.0 =
-Last Updated: 05/26/2012 5:25pm Pacific
+= 1.0.1 =
+Updated: 05/26/2012 12:05am Pacific
+- Removed prev/next canonical for comic pages
+
+Updated: 05/26/2012 5:25pm Pacific
 - Sidebar locations for the comic-area
+
 
 
 == Upgrade Notice ==
