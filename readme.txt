@@ -79,6 +79,19 @@ There are other "action" area's that you can put into your theme, not just the c
 
 `do_action('comic-post-info');` - For inside of the single/archive/search post pages posts, showing more comic info.
 
+= Adding the Comic area sidebars =
+
+Find the code in the functions.php of the theme that registers sidebars.  The only relevant information you need to add is the name and ID, just duplicate the rest of how the theme does it.  This is completely optional.
+
+`
+'name' => 'Over Comic', 'id' => 'over-comic',
+'name' => 'Left of Comic', id' => 'left-of-comic',
+'name' => 'Right of Comic', 'id' => 'right-of-comic',
+'name' => 'Under Comic', 'id' => 'under-comic'
+`
+
+The usage in the plugin for get_sidebar is 'over', 'comicleft', 'comicright', 'under' which makes the CSS #sidebar-over #sidebar-comicleft #sidebar-comicright and #sidebar-under which will also look in your theme and child themes for sidebar-over.php sidebar-under.php sidebar-comicleft.php and sidebar-comicright.php which are only optional.
+
 
 == Frequently Asked Questions ==
 
@@ -90,8 +103,8 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0 =
-Last Updated: 05/25/2012 9:51pm Pacific
-- Added div skinning for an image under the chapter name to make chapter images, for example slug name of the chapter is text-chapter, it will be .comic-archive-image-test-chapter {}
+Last Updated: 05/26/2012 5:25pm Pacific
+- Sidebar locations for the comic-area
 
 
 == Upgrade Notice ==

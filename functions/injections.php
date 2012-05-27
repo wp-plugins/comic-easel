@@ -85,11 +85,16 @@ function ceo_display_comic_wrapper() {
 	if (is_home() && ceo_pluginfo('disable_comic_on_home_page')) return;
 	if ($post->post_type == 'comic') { ?>
 		<div id="comic-wrap" class="comic-id-<?php echo $post->ID; ?>">
-			<div id="comic-head"></div>
+			<div id="comic-head">
+				<?php if (is_active_sidebar('over-comic')) ceo_get_sidebar('over'); ?>
+			</div>
+			<?php if (is_active_sidebar('left-of-comic')) ceo_get_sidebar('comicleft'); ?>
 			<div id="comic">
 				<?php echo ceo_display_comic(); ?>
 			</div>
+			<?php if (is_active_sidebar('right-of-comic')) ceo_get_sidebar('comicright'); ?>
 			<div id="comic-foot">
+				<?php if (is_active_sidebar('under-comic')) ceo_get_sidebar('under'); ?>
 				<?php ceo_display_comic_navigation(); ?>
 			</div>
 			<div class="clear"></div>

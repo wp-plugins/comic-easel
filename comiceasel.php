@@ -171,6 +171,9 @@ function ceo_flush_rewrite() {
 	$wp_rewrite->flush_rules();
 }
 
+// This file contains functions that is used elsewhere in the plugin 
+@require('functions/library.php');
+
 // This file handles navigation of the comic
 @require('functions/navigation.php');
 
