@@ -174,6 +174,9 @@ function ceo_flush_rewrite() {
 // This file contains functions that is used elsewhere in the plugin 
 @require('functions/library.php');
 
+// Filters that change the behavior of WordPress
+@require('functions/filters.php');
+
 // This file handles navigation of the comic
 @require('functions/navigation.php');
 
@@ -185,9 +188,6 @@ function ceo_flush_rewrite() {
 
 // This file contains all the shortcodes for archives and cast pages
 @require('functions/shortcodes.php');
-
-// Syndication/ RSS injections
-@require('functions/syndication.php');
 
 // Redirects /?latest /?random etc.
 @require('functions/redirects.php');
@@ -293,46 +293,4 @@ foreach (glob(ceo_pluginfo('plugin_path')  . '/widgets/*.php') as $widgefile) {
 	require_once($widgefile);
 }
 
-
-/**
- * Protect global $post and $wp_query.
- * @param object $use_this_post If provided, after saving the current post, set up this post for template tag use.
- */
-function ceo_Protect($use_this_post = null) {
-	global $post, $wp_query, $__post, $__wp_query;
-	if (!empty($post)) {
-		$__post = $post;
-	}
-	if (!empty($wp_query)) {
-		$__wp_query = $wp_query;
-	}
-	if (!is_null($use_this_post)) {
-		$post = $use_this_post;
-		setup_postdata($post);
-	}
-}
-
-/**
- * Temporarily restore the global $post variable and set it up for use.
- */
-function ceo_Restore() {
-	global $post, $__post;
-	$post = $__post;
-	setup_postdata($post);
-}
-
-/**
- * Restore global $post and $wp_query.
- */
-function ceo_Unprotect() {
-	global $post, $wp_query, $__post, $__wp_query;
-	if (!empty($__post)) {
-		$post = $__post;
-	}
-	if (!empty($__wp_query)) {
-		$wp_query = $__wp_query;
-	}
-	
-	$__post = $__wp_query = null;
-}
 ?>

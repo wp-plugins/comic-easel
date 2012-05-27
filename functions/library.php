@@ -14,20 +14,44 @@ function ceo_get_sidebar($location = '') {
 	<?php }
 }
 
-function ceo_change_prev_rel_link_two($object) {
-	global $post;
-//	if ($post->post_type=='comic') $link='<link rel="previous" href="'.ceo_get_previous_comic_permalink().'" />'."\r\n";
-	if ($post->post_type == 'comic') $link=false;
-	return $link;
+/**
+ * Protect global $post and $wp_query.
+ * @param object $use_this_post If provided, after saving the current post, set up this post for template tag use.
+ */
+function ceo_Protect($use_this_post = null) {
+	global $post, $wp_query, $__post, $__wp_query;
+	if (!empty($post)) {
+		$__post = $post;
+	}
+	if (!empty($wp_query)) {
+		$__wp_query = $wp_query;
+	}
+	if (!is_null($use_this_post)) {
+		$post = $use_this_post;
+		setup_postdata($post);
+	}
 }
 
-add_filter('previous_post_rel_link', 'ceo_change_prev_rel_link_two', $link);
-
-function ceo_change_next_rel_link_two($object) {
-	global $post;
-//	if ($post->post_type=='comic') $link='<link rel="next" href="'.ceo_get_next_comic_permalink().'" />'."\r\n";
-	if ($post->post_type == 'comic') $link=false;
-	return $link;
+/**
+ * Temporarily restore the global $post variable and set it up for use.
+ */
+function ceo_Restore() {
+	global $post, $__post;
+	$post = $__post;
+	setup_postdata($post);
 }
 
-add_filter('next_post_rel_link', 'ceo_change_next_rel_link_two', $link);
+/**
+ * Restore global $post and $wp_query.
+ */
+function ceo_Unprotect() {
+	global $post, $wp_query, $__post, $__wp_query;
+	if (!empty($__post)) {
+		$post = $__post;
+	}
+	if (!empty($__wp_query)) {
+		$wp_query = $__wp_query;
+	}
+	
+	$__post = $__wp_query = null;
+}

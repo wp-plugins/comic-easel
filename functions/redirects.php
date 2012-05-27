@@ -2,6 +2,9 @@
 
 if ( isset( $_GET['latest'] ) )
 	add_action( 'template_redirect', 'ceo_latest_comic_jump' );
+	
+if ( isset( $_GET['random'] ) )
+	add_action( 'template_redirect', 'ceo_random_comic' );
 
 //to use simply create a URL link to "/?latestcomic"
 function ceo_latest_comic_jump() {
@@ -40,10 +43,6 @@ function ceo_latest_comic_jump() {
 	wp_reset_query();
 	exit;
 }
-
-if ( isset( $_GET['random'] ) )
-	add_action( 'template_redirect', 'ceo_random_comic' );
-
 
 function ceo_random_comic() {
 	$args = array( 

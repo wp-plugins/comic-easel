@@ -5,58 +5,6 @@ add_shortcode( 'cast-page', 'ceo_cast_page' );
 add_shortcode( 'comic-archive', 'ceo_comic_archive_multi');
 // [comic-archive list="default"]
 
-function ceo_archive_list_series($thumbnail = 0) {
-	$output = '';
-	$archive_count = 0;
-	$args = array(
-			'pad_counts' => 0,
-			'orderby' => 'id',
-			'order' => 'DESC',
-			'hide_empty' => 0,
-			'parent' => 0
-			);
-	$parent_chapters = get_terms( 'chapters', $args );
-	if (is_array($parent_chapters)) {
-		foreach($parent_chapters as $parent_chapter) {
-			$output .= '<h2 class="comic-archive-series-title">'.$parent_chapter->name.'</h2>';
-			$output .= '<div class="comic-archive-image-'.$parent_chapter->slug.'"></div>';
-			$output .= '<div class="comic-archive-series-description">'.$parent_chapter->description.'</div>';
-			$child_chapters = get_term_children( $parent_chapter->term_id, 'chapters' );
-			foreach ($child_chapters as $child) {
-				$child_term = get_term_by( 'id', $child, 'chapters' );
-				if ($child_term->count) {
-					$output .= '<div class="comic-archive-chapter-wrap">';
-					$output .= '<h3 class="comic-archive-chapter-title">'.$child_term->name.'</h3>';
-					$output .= '<div class="comic-archive-image-'.$child_term->slug.'"></div>';
-					$output .= '<div class="comic-archive-chapter-description">'.$child_term->description.'</div>';
-					$child_args = array( 
-							'numberposts' => -1, 
-							'post_type' => 'comic',
-							'orderby' => 'post_date', 
-							'order' => 'ASC', 
-							'post_status' => 'publish', 
-							'chapters' => $child_term->slug 
-							);					
-					$qcposts = get_posts( $child_args );
-					if ($thumbnail) {
-						$output .= '<div class="comic-archive-thumbnail">'.get_the_post_thumbnail($qcposts[0]->ID, 'thumbnail').'</div>';
-					}
-					$output .= '<div class="comic-archive-list-wrap">';	
-					$css_alt = false;	
-					foreach ($qcposts as $qcpost) {
-						$archive_count++;
-						if ($css_alt) { $alternate = ' comic-list-alt'; $css_alt = false; } else { $alternate = ''; $css_alt=true; }		
-						$output .= '<div class="comic-list comic-list-'.$archive_count.$alternate.'"><span class="comic-archive-date">'.get_the_time('M d, Y', $qcpost->ID).'</span><span class="comic-archive-title"><a href="'.get_permalink($qcpost->ID).'" rel="bookmark" title="'.__('Permanent Link:','comiceasel').' '.$qcpost->post_title.'">'.$qcpost->post_title.'</a></span></div>';
-					}
-					$output .= '</div>';
-					$output .= '<div style="clear:both;"></div></div>';	
-				}
-			}
-		}
-		echo $output;
-	}
-}
-
 function ceo_cast_page( $atts, $content = null ) {
 	$cast_output = '';
 	$characters = get_terms( 'characters', 'orderby=count&order=desc&hide_empty=1' );
@@ -195,8 +143,56 @@ function ceo_archive_list_all($order = 'ASC', $thumbnail = 0) {
 	echo apply_filters('ceo_archive_list_all', $output);
 }
 
-
-// $all_chapters = get_terms('chapters');
-// var_dump($all_chapters);
+function ceo_archive_list_series($thumbnail = 0) {
+	$output = '';
+	$archive_count = 0;
+	$args = array(
+			'pad_counts' => 0,
+			'orderby' => 'id',
+			'order' => 'DESC',
+			'hide_empty' => 0,
+			'parent' => 0
+			);
+	$parent_chapters = get_terms( 'chapters', $args );
+	if (is_array($parent_chapters)) {
+		foreach($parent_chapters as $parent_chapter) {
+			$output .= '<h2 class="comic-archive-series-title">'.$parent_chapter->name.'</h2>';
+			$output .= '<div class="comic-archive-image-'.$parent_chapter->slug.'"></div>';
+			$output .= '<div class="comic-archive-series-description">'.$parent_chapter->description.'</div>';
+			$child_chapters = get_term_children( $parent_chapter->term_id, 'chapters' );
+			foreach ($child_chapters as $child) {
+				$child_term = get_term_by( 'id', $child, 'chapters' );
+				if ($child_term->count) {
+					$output .= '<div class="comic-archive-chapter-wrap">';
+					$output .= '<h3 class="comic-archive-chapter-title">'.$child_term->name.'</h3>';
+					$output .= '<div class="comic-archive-image-'.$child_term->slug.'"></div>';
+					$output .= '<div class="comic-archive-chapter-description">'.$child_term->description.'</div>';
+					$child_args = array( 
+							'numberposts' => -1, 
+							'post_type' => 'comic',
+							'orderby' => 'post_date', 
+							'order' => 'ASC', 
+							'post_status' => 'publish', 
+							'chapters' => $child_term->slug 
+							);					
+					$qcposts = get_posts( $child_args );
+					if ($thumbnail) {
+						$output .= '<div class="comic-archive-thumbnail">'.get_the_post_thumbnail($qcposts[0]->ID, 'thumbnail').'</div>';
+					}
+					$output .= '<div class="comic-archive-list-wrap">';	
+					$css_alt = false;	
+					foreach ($qcposts as $qcpost) {
+						$archive_count++;
+						if ($css_alt) { $alternate = ' comic-list-alt'; $css_alt = false; } else { $alternate = ''; $css_alt=true; }		
+						$output .= '<div class="comic-list comic-list-'.$archive_count.$alternate.'"><span class="comic-archive-date">'.get_the_time('M d, Y', $qcpost->ID).'</span><span class="comic-archive-title"><a href="'.get_permalink($qcpost->ID).'" rel="bookmark" title="'.__('Permanent Link:','comiceasel').' '.$qcpost->post_title.'">'.$qcpost->post_title.'</a></span></div>';
+					}
+					$output .= '</div>';
+					$output .= '<div style="clear:both;"></div></div>';	
+				}
+			}
+		}
+		echo $output;
+	}
+}
 
 ?>

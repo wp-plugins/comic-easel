@@ -103,8 +103,8 @@ Go to your settings -> permalinks and just click save, the wp_rewrite will refre
 == Changelog ==
 
 = 1.0.1 =
-Updated: 05/26/2012 12:05am Pacific
-- Removed prev/next canonical for comic pages
+Updated: 05/26/2012 12:25am Pacific
+- Made the prev/next link rel's properly navigate for comic posts
 
 Updated: 05/26/2012 5:25pm Pacific
 - Sidebar locations for the comic-area
