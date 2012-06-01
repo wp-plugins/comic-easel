@@ -30,6 +30,7 @@ To Convert your existing ComicPress theme comics to Comic Easel's post type ther
 - Character and Location settings per Comic
 - As many comic posts you can do in a day as you want.
 - Hovertext on the comic
+- Using translate plugins, every comic and post can be multilanguage
 - And More!
 
 = Widgets =
