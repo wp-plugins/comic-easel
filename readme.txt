@@ -100,7 +100,7 @@ Sidebars for Comic Easel are added automatically since 05/28/2012 They should ap
 
 = The permalinks are not working to go to the comic =
 
-Go to your settings -> permalinks and just click save, the wp_rewrite will refresh.  This generally happens after it is first installed and should not happen again.
+Go to your settings -> permalinks and just click save, the wp_rewrite will refresh.  You need to go to the settings -> permalinks if you ever upgrade enable or disable the Comic Easel plugin.
 
 
 == Changelog ==
