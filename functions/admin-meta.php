@@ -17,7 +17,7 @@ function ceo_admin_init() {
 	add_action('quick_edit_custom_box', 'ceo_chapters_quick_edit_menu_order', 10, 3);
 }
 
-function ceo_chapters_quick_edit_menu_order($column_name, $screen, $name) {
+function ceo_chapters_quick_edit_menu_order($column_name, $screen, $name = '') {
 	if (($column_name != 'menu_order') && ($name != 'chapters') && ($screen != 'edit-tags')) return;
 	echo '<fieldset><div class="inline-edit-col"><label><span class="title">' . __( 'Order' , 'comiceasel') . '</span><span class="input-text-wrap"><input class="ptitle" name="ceo_chapter_order" type="text" value="" /></span></label></div></fieldset>';
 }
@@ -34,7 +34,7 @@ function ceo_chapters_columns($theme_columns) {
 	$new_columns['name'] = __('Name', 'comiceasel');
 	$new_columns['slug'] = __('Slug', 'comiceasel');
 	$new_columns['description'] = __('Description', 'comiceasel');
-	$new_columns['posts'] = __('Posts', 'comiceasel');
+	$new_columns['posts'] = __('Comics', 'comiceasel');
 	$new_columns['menu_order'] = __('Order', 'comiceasel');
 	return $new_columns;
 }
