@@ -107,7 +107,9 @@ function ceo_archive_list_single($chapter = 0, $order = 'ASC', $thumbnail = 0) {
 function ceo_archive_list_all($order = 'ASC', $thumbnail = 0) {
 	$output = '';
 	$main_args = array(
-			'hide_empty' => 1
+			'hide_empty' => 1,
+			'orderby' => class_exists('NS_TMO_Plugin') ?  'menu_order' : 'name',
+			'order' => $order
 			);
 	$all_chapters = get_terms('chapters', $main_args);
 	if (is_null($all_chapters)) { echo 'There are no chapters available.'; return; }
