@@ -29,7 +29,7 @@ function ceo_chapters_save_value($term_id, $tt_id) {
 		$itwork = $wpdb->update($wpdb->terms, array('menu_order' => (int)$_POST['ceo_chapter_order']), array('term_id' => $term_id));
 }
 
-function ceo_chapters_columns($theme_columns) {
+function ceo_chapters_columns($chapter_columns) {
 	$new_columns['cb'] = '<input type="checkbox" />';
 	$new_columns['name'] = __('Name', 'comiceasel');
 	$new_columns['slug'] = __('Slug', 'comiceasel');
