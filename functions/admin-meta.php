@@ -193,5 +193,3 @@ function ceo_chapters_deactivate() {
 	$sql = "ALTER TABLE `{$wpdb->terms}` DROP COLUMN `menu_order`;";
 	$result = $wpdb->query($sql);	
 }
-
-?>
