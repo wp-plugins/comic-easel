@@ -111,7 +111,7 @@
 				</tr>
 				<tr>
 					<td colspan="12">
-						<i><?php _e('NOTE: Edit a post, click update on it for the feeds to refresh with new copies; to see changes.', 'comiceasle'); ?></i>
+						<i><?php _e('NOTE: Edit a post, click update on it for the feeds to refresh with new copies; to see changes.','comiceasel'); ?></i>
 					</td>	
 				</tr>
 			</table>
