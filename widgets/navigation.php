@@ -163,7 +163,6 @@ class ceo_comic_navigation_widget extends WP_Widget {
 	
 	function widget($args, $instance) {
 		global $wp_query, $post;
-		var_dump($wp_query);
 		if (is_home() || is_front_page()) {
 			ceo_Protect();
 			$comic_args = array(
