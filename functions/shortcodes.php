@@ -8,7 +8,6 @@ add_shortcode( 'comic-archive', 'ceo_comic_archive_multi');
 function ceo_cast_display($character) {
 	$cast_output = '';
 	if ($character) {
-		var_dump($character);
 		$cast_output .= '<div class="cast-box">';
 		$cast_output .= '<div class="cast-pic character-'.$character->slug.'">';
 		$cast_output .= '</div>';
