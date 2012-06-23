@@ -54,14 +54,14 @@ function ceo_cast_page( $atts, $content = '' ) {
 				$cast_output .= ceo_cast_display($character);
 			}
 		} else {
-			$cast_output = __('You do not have any characters yet.','comiceasel');
+			$cast_output = __('You do not have any characters yet.','comiceasel')."<br />\r\n";
 		}
 	} else {
 		$single_character = get_term_by('slug', $character, 'characters');
 		if (!empty($single_character)) {
 			$cast_output .= ceo_cast_display($single_character);
 		} else 
-			$cast_output .= __('Unknown Character: ', 'comiceasel').$character;
+			$cast_output .= __('Unknown Character: ', 'comiceasel').$character."<br />\r\n";
 	}
 	return $cast_output;
 }
