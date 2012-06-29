@@ -11,6 +11,7 @@ add_filter('next_post_rel_link', 'ceo_change_next_rel_link_two', $link);
 add_filter('pre_get_posts', 'ceo_query_post_type');
 add_filter('body_class', 'ceo_body_class');
 add_filter('get_terms_args', 'ceo_chapters_find_menu_orderby');
+add_filter('get_lastpostmodified', 'ceo_lastpostmodified');
 
 function ceo_rss_request($qv) {
 	if (isset($qv['feed']) && !isset($qv['post_type']) && !isset($qv['chapters'])) {
@@ -99,4 +100,16 @@ function ceo_chapters_find_menu_orderby($args) {
 		add_filter('get_terms_orderby', 'ceo_chapters_edit_menu_orderby');
 	}
 	return $args;
+}
+
+// Fix for checking all posts whether or not custom post type or not for last modified.
+function ceo_lastpostmodified()
+{
+	$lastpostmodified = wp_cache_get( "lastpostmodified:custom:server", 'timeinfo' );
+	if ( $lastpostmodified ) return $lastpostmodified;
+	global $wpdb;
+	$add_seconds_server = date('Z');
+	$lastpostmodified = $wpdb->get_var("SELECT DATE_ADD(post_modified_gmt, INTERVAL '$add_seconds_server' SECOND) FROM $wpdb->posts WHERE post_status = 'publish' ORDER  BY post_modified_gmt DESC LIMIT 1");
+	wp_cache_set( "lastpostmodified:custom:server", $lastpostmodified, 'timeinfo', 3600 );
+	return $lastpostmodified;
 }
