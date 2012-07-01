@@ -3,6 +3,7 @@
 
 add_shortcode( 'cast-page', 'ceo_cast_page' );
 add_shortcode( 'comic-archive', 'ceo_comic_archive_multi');
+add_shortcode( 'test-code', 'ceo_test_code');
 // [comic-archive list="default"]
 
 function ceo_cast_display($character) {
@@ -221,5 +222,22 @@ function ceo_archive_list_series($thumbnail = 0) {
 		return $output;
 	}
 }
+
+
+function ceo_test_code( $atts, $content = '' ) { ?>
+	<ul id="portfolio">
+	<?php 
+	$args = array(
+			'post_type' => 'post',
+			'posts_per_page' => -1 // all posts
+			);
+	$all_posts = get_posts($args);
+	
+	foreach ($all_posts as $the_post) {
+		$terms = wp_get_post_terms( $the_post->ID, 'category' ); ?>
+		<li <?php if (!is_array($terms) && (count($terms) > 0)) { ?> class="<?php foreach ($terms as $term) { echo 'cat-'.$term->slug.' '; } ?>"<?php } ?>><a href="<?php echo get_permalink($the_post->ID); ?>" title="<?php echo get_the_title($the_post->ID) ?>"><?php echo get_the_post_thumbnail($the_post->ID, 'slider'); ?><span class="title"><?php echo get_the_title($the_post->ID) ?></span></a></li>
+	<?php } ?>
+	</ul>
+<?php }
 
 ?>

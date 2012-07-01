@@ -374,5 +374,3 @@ function ceo_test_information($vartodump) { ?>
 foreach (glob(ceo_pluginfo('plugin_path')  . '/widgets/*.php') as $widgefile) {
 	require_once($widgefile);
 }
-
-?>
