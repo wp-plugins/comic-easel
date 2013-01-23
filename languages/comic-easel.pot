@@ -1,18 +1,18 @@
-# Copyright (C) 2012 
+# Copyright (C) 2013 
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/comic-easel\n"
-"POT-Creation-Date: 2012-12-20 07:34:19+00:00\n"
+"POT-Creation-Date: 2013-01-23 00:32:38+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: ceo-admin.php:16 ceo-config.php:149
+#: ceo-admin.php:16 ceo-config.php:151
 msgid "Comic Easel"
 msgstr ""
 
@@ -36,45 +36,45 @@ msgstr ""
 msgid "Comic Easel Settings RESET!"
 msgstr ""
 
-#: ceo-config.php:96
+#: ceo-config.php:98
 msgid "Comic Easel Settings SAVED!"
 msgstr ""
 
-#: ceo-config.php:106
+#: ceo-config.php:108
 msgid "General"
 msgstr ""
 
-#: ceo-config.php:107
+#: ceo-config.php:109
 msgid "Navigation"
 msgstr ""
 
-#: ceo-config.php:108
+#: ceo-config.php:110
 msgid "Archive"
 msgstr ""
 
-#: ceo-config.php:149
+#: ceo-config.php:151
 msgid "created, developed and maintained by"
 msgstr ""
 
-#: ceo-config.php:150
+#: ceo-config.php:152
 msgid "For technical assistance go to the"
 msgstr ""
 
-#: ceo-config.php:150
+#: ceo-config.php:152
 msgid "Frumph.NET Forums."
 msgstr ""
 
-#: ceo-config.php:151
+#: ceo-config.php:153
 msgid ""
 "If you like the Comic Easel plugin, please donate.  It will help in "
 "developing new features and versions."
 msgstr ""
 
-#: ceo-config.php:177
+#: ceo-config.php:179
 msgid "French Translation by LiAn"
 msgstr ""
 
-#: ceo-config.php:185
+#: ceo-config.php:187
 msgid "German Translation by Sarah Burrini"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Comics"
 msgstr ""
 
-#: comiceasel.php:34 functions/admin-meta.php:203
+#: comiceasel.php:34 functions/admin-meta.php:209
 msgid "Comic"
 msgstr ""
 
@@ -198,159 +198,159 @@ msgstr ""
 msgid "No comics found in Trash"
 msgstr ""
 
-#: comiceasel.php:72
+#: comiceasel.php:73
 msgid "Chapters"
 msgstr ""
 
-#: comiceasel.php:73 functions/admin-meta.php:77 functions/injections.php:33
+#: comiceasel.php:74 functions/admin-meta.php:77 functions/injections.php:33
 msgid "Chapter"
 msgstr ""
 
-#: comiceasel.php:74
+#: comiceasel.php:75
 msgid "Search Chapters"
 msgstr ""
 
-#: comiceasel.php:75
+#: comiceasel.php:76
 msgid "Popular Chapters"
 msgstr ""
 
-#: comiceasel.php:76
+#: comiceasel.php:77
 msgid "All Chapters"
 msgstr ""
 
-#: comiceasel.php:77
+#: comiceasel.php:78
 msgid "Parent Chapter"
 msgstr ""
 
-#: comiceasel.php:78
+#: comiceasel.php:79
 msgid "Parent Chapter:"
 msgstr ""
 
-#: comiceasel.php:79
+#: comiceasel.php:80
 msgid "Edit Chapters"
 msgstr ""
 
-#: comiceasel.php:80
+#: comiceasel.php:81
 msgid "Update Chapters"
 msgstr ""
 
-#: comiceasel.php:81
+#: comiceasel.php:82
 msgid "Add New Chapter"
 msgstr ""
 
-#: comiceasel.php:82
+#: comiceasel.php:83
 msgid "New Chapter Name"
 msgstr ""
 
-#: comiceasel.php:96 functions/admin-meta.php:78 functions/injections.php:131
+#: comiceasel.php:97 functions/admin-meta.php:78 functions/injections.php:131
 msgid "Characters"
 msgstr ""
 
-#: comiceasel.php:97
+#: comiceasel.php:98
 msgid "Character"
 msgstr ""
 
-#: comiceasel.php:98
+#: comiceasel.php:99
 msgid "Search Characters"
 msgstr ""
 
-#: comiceasel.php:99
+#: comiceasel.php:100
 msgid "Popular Characters"
 msgstr ""
 
-#: comiceasel.php:100
+#: comiceasel.php:101
 msgid "All Characters"
 msgstr ""
 
-#: comiceasel.php:101
+#: comiceasel.php:102
 msgid "Parent Character"
 msgstr ""
 
-#: comiceasel.php:102
+#: comiceasel.php:103
 msgid "Parent Character:"
 msgstr ""
 
-#: comiceasel.php:103
+#: comiceasel.php:104
 msgid "Edit Character"
 msgstr ""
 
-#: comiceasel.php:104
+#: comiceasel.php:105
 msgid "Update Character"
 msgstr ""
 
-#: comiceasel.php:105
+#: comiceasel.php:106
 msgid "Add New Character"
 msgstr ""
 
-#: comiceasel.php:106
+#: comiceasel.php:107
 msgid "New Character Name"
 msgstr ""
 
-#: comiceasel.php:120
+#: comiceasel.php:121
 msgid "Locations"
 msgstr ""
 
-#: comiceasel.php:121 functions/admin-meta.php:79 functions/injections.php:120
+#: comiceasel.php:122 functions/admin-meta.php:79 functions/injections.php:120
 msgid "Location"
 msgstr ""
 
-#: comiceasel.php:122
+#: comiceasel.php:123
 msgid "Search Locations"
 msgstr ""
 
-#: comiceasel.php:123
+#: comiceasel.php:124
 msgid "Popular Locations"
 msgstr ""
 
-#: comiceasel.php:124
+#: comiceasel.php:125
 msgid "All Locations"
 msgstr ""
 
-#: comiceasel.php:125
+#: comiceasel.php:126
 msgid "Parent Locations"
 msgstr ""
 
-#: comiceasel.php:126
+#: comiceasel.php:127
 msgid "Parent Location:"
 msgstr ""
 
-#: comiceasel.php:127
+#: comiceasel.php:128
 msgid "Edit Location"
 msgstr ""
 
-#: comiceasel.php:128
+#: comiceasel.php:129
 msgid "Update Location"
 msgstr ""
 
-#: comiceasel.php:129
+#: comiceasel.php:130
 msgid "Add New Location"
 msgstr ""
 
-#: comiceasel.php:130
+#: comiceasel.php:131
 msgid "New Location Name"
 msgstr ""
 
-#: comiceasel.php:157
+#: comiceasel.php:158
 msgid "Over Comic"
 msgstr ""
 
-#: comiceasel.php:158
+#: comiceasel.php:159
 msgid "Left of Comic"
 msgstr ""
 
-#: comiceasel.php:159
+#: comiceasel.php:160
 msgid "Right of Comic"
 msgstr ""
 
-#: comiceasel.php:160
+#: comiceasel.php:161
 msgid "Under Comic"
 msgstr ""
 
-#: comiceasel.php:165
+#: comiceasel.php:166
 msgid "Comic Easel Sidebar Location"
 msgstr ""
 
-#: comiceasel.php:353
+#: comiceasel.php:358
 msgid "Comic Easel - Test Information"
 msgstr ""
 
@@ -413,23 +413,27 @@ msgstr ""
 msgid "Gallery rows to use?"
 msgstr ""
 
-#: functions/admin-meta.php:204
+#: functions/admin-meta.php:164
+msgid "Open comic up with Lightbox?"
+msgstr ""
+
+#: functions/admin-meta.php:210
 msgid "Misc. Comic Functionality"
 msgstr ""
 
-#: functions/admin-meta.php:205
+#: functions/admin-meta.php:211
 msgid "Alt (Hover) Text"
 msgstr ""
 
-#: functions/admin-meta.php:206
+#: functions/admin-meta.php:212
 msgid "Transcript"
 msgstr ""
 
-#: functions/admin-meta.php:207
+#: functions/admin-meta.php:213
 msgid "HTML (Above) Comic"
 msgstr ""
 
-#: functions/admin-meta.php:208
+#: functions/admin-meta.php:214
 msgid "HTML (Below) Comic"
 msgstr ""
 
@@ -437,7 +441,11 @@ msgstr ""
 msgid "This information is password protected."
 msgstr ""
 
-#: functions/displaycomic.php:45
+#: functions/displaycomic.php:32
+msgid "Click comic to view larger version."
+msgstr ""
+
+#: functions/displaycomic.php:50
 msgid "<!-- No HTML, Gallery or featured image Found. //-->"
 msgstr ""
 
@@ -469,15 +477,15 @@ msgstr ""
 msgid "Random"
 msgstr ""
 
-#: functions/injections.php:175
+#: functions/injections.php:176
 msgid "&rsaquo;"
 msgstr ""
 
-#: functions/injections.php:176
+#: functions/injections.php:177
 msgid "&lsaquo;"
 msgstr ""
 
-#: functions/injections.php:298
+#: functions/injections.php:302
 msgid "Related Comics &not;"
 msgstr ""
 
@@ -517,116 +525,159 @@ msgid ""
 "posts.  This feature automatically works for all tags already."
 msgstr ""
 
-#: options/archive.php:31 options/general.php:139 options/navigation.php:142
+#: options/archive.php:31 options/general.php:175 options/navigation.php:142
 msgid "Save Settings"
 msgstr ""
 
-#: options/general.php:11
+#: options/general.php:8
 msgid "Configuration"
 msgstr ""
 
-#: options/general.php:15
+#: options/general.php:12
 msgid "Enable Dashboard Feed to ComicEasel.com"
 msgstr ""
 
-#: options/general.php:20
+#: options/general.php:17
 msgid "This is a feed that shows what is happening on ComicEasel.com"
 msgstr ""
 
-#: options/general.php:24
+#: options/general.php:21
 msgid "Disable Comic on the Home Page?"
 msgstr ""
 
-#: options/general.php:29
+#: options/general.php:26
 msgid ""
 "Checking this will stop the display of the comic and comic area on the home "
 "page"
 msgstr ""
 
-#: options/general.php:33
+#: options/general.php:30
 msgid "Disable the Comic Post on the Home Page?"
 msgstr ""
 
-#: options/general.php:38
+#: options/general.php:35
 msgid ""
 "Checking this will stop the display of the comic's blog on the home page."
 msgstr ""
 
-#: options/general.php:42
+#: options/general.php:39
 msgid "Enable comments to appear on the home page for comic posts?"
 msgstr ""
 
-#: options/general.php:47
+#: options/general.php:44
 msgid ""
 "If the blog loop is disabled and the comic post is enabled on the home page, "
 "enabling this will allow the comments for the comic post to appear."
 msgstr ""
 
-#: options/general.php:51
+#: options/general.php:48
 msgid "Enable comic sidebar locations?"
 msgstr ""
 
-#: options/general.php:56
+#: options/general.php:53
 msgid ""
 "Checking this option makes 4 new sidebars appear in the appearance - widgets "
 "section, above comic, below comic, left of comic and right of comic."
 msgstr ""
 
-#: options/general.php:60
+#: options/general.php:57
 msgid "Disable the displaying of related comics?"
 msgstr ""
 
-#: options/general.php:65
+#: options/general.php:62
 msgid ""
 "If you have a theme that has related comics do_action code installed, this "
 "will disable it from displaying."
 msgstr ""
 
-#: options/general.php:73
+#: options/general.php:66
+msgid "Show the first comic on the home page?"
+msgstr ""
+
+#: options/general.php:71
+msgid ""
+"Enabling this will make it so that the comic on the home page is the first "
+"comic."
+msgstr ""
+
+#: options/general.php:79
 msgid "Thumbnail sizes for locations where used."
 msgstr ""
 
-#: options/general.php:78
+#: options/general.php:84
 msgid "Thumbnail size for main RSS Feed"
 msgstr ""
 
-#: options/general.php:80 options/general.php:98 options/general.php:115
+#: options/general.php:86 options/general.php:104 options/general.php:121
 #: widgets/scheduledcomics.php:34
 msgid "None"
 msgstr ""
 
-#: options/general.php:87 options/general.php:104 options/general.php:121
+#: options/general.php:93 options/general.php:110 options/general.php:127
 msgid "Full"
 msgstr ""
 
-#: options/general.php:91
+#: options/general.php:97
 msgid "The thumbnail for the main RSS /feed/"
 msgstr ""
 
-#: options/general.php:96
+#: options/general.php:102
 msgid "Thumbnail size for the direct comic & chapter RSS Feeds"
 msgstr ""
 
-#: options/general.php:108
+#: options/general.php:114
 msgid ""
 "The thumbnail for the direct comic and chapter RSS /comic/feed/ and /chapter/"
 "chapter-slug/feed/ "
 msgstr ""
 
-#: options/general.php:113
+#: options/general.php:119
 msgid "Thumbnail size for archive and search"
 msgstr ""
 
-#: options/general.php:125
+#: options/general.php:131
 msgid ""
 "The thumbnail shown inside posts when viewed in the archive and search "
 "functions of WordPress"
 msgstr ""
 
-#: options/general.php:130
+#: options/general.php:136
 msgid ""
 "NOTE: Edit a post, click update on it for the feeds to refresh with new "
 "copies; to see changes."
+msgstr ""
+
+#: options/general.php:144
+msgid "Comic Post Type"
+msgstr ""
+
+#: options/general.php:149
+msgid "Custom Post Type slug name?"
+msgstr ""
+
+#: options/general.php:155
+msgid "This slug already exists and will cause problems.  Change it."
+msgstr ""
+
+#: options/general.php:157
+msgid ""
+"This is the default custom post type slug - which is already in use on your "
+"system.  Sometimes people have the chapter name as this slug, that needs to "
+"be changed if you want to use the default."
+msgstr ""
+
+#: options/general.php:163
+msgid ""
+"Default: \"comic\" changing this will modify the permalink name for the /"
+"comic/ how it is addressed in the url.  This is a slug name, no slashes or "
+"spaces allowed; only alpha characters and a single word."
+msgstr ""
+
+#: options/general.php:165
+msgid ""
+"IMPORTANT - If you change this from the default remember to go to settings -"
+"> permalink and click SAVE so that the permalink structure can be recognized "
+"by WordPress"
 msgstr ""
 
 #: options/navigation.php:11
