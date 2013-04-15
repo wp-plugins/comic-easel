@@ -77,7 +77,7 @@ function ceo_comic_archive_multi(  $atts, $content = '' ) {
 	$output = '';
 	switch ($list) {
 		case 2: 
-			$output = ceo_archive_list_by_year($thumbnail);
+			$output = ceo_archive_list_by_year($thumbnail, $order);
 			break;
 		case 1:
 			$output = ceo_archive_list_series($thumbnail);
@@ -271,7 +271,7 @@ function ceo_the_transcript($displaymode = 'raw') {
 	}
 }
 
-function ceo_archive_list_by_year($thumbnail = false) {
+function ceo_archive_list_by_year($thumbnail = false, $order = 'ASC') {
 	global $wpdb;
 	if (isset($_GET['archive_year'])) { 
 		$archive_year = (int)esc_attr($_GET['archive_year']); 
@@ -298,7 +298,7 @@ function ceo_archive_list_by_year($thumbnail = false) {
 			'showposts' => -1,
 			'year' => (int)$archive_year,
 			'post_type' => 'comic',
-			'order' => 'ASC'
+			'order' => $order
 			);
 	$comicArchive = new WP_Query(); $comicArchive->query($comic_args);
 	while ($comicArchive->have_posts()) : $comicArchive->the_post(); ?>
