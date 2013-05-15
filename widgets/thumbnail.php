@@ -28,7 +28,6 @@ class ceo_thumbnail_widget extends WP_Widget {
 			$current_post_id = $post->ID;
 			$comic_query .= '&exclude='.$current_post_id;
 		}
-		ceo_Protect();
 		$thumbnail_query = new WP_Query($comic_query);
 		$archive_image = null;
 		if ($thumbnail_query->have_posts()) {
@@ -65,7 +64,7 @@ class ceo_thumbnail_widget extends WP_Widget {
 				}
 			endwhile;
 		}
-		ceo_unProtect();
+		wp_reset_query();
 	}
 	
 	function update($new_instance, $old_instance) {
@@ -107,7 +106,7 @@ class ceo_thumbnail_widget extends WP_Widget {
 				$chapter_options .= '<option name="'.$term->slug.'" value="'.$term->slug.'" '.$chaptselected.'> '.$term->name.' </option>';
 			}
 			?>
-			<select name=<?php echo $this->get_field_name('thumbchapt'); ?>" id="<?php echo $this->get_field_id('thumbchapt'); ?>">
+			<select name="<?php echo $this->get_field_name('thumbchapt'); ?>" id="<?php echo $this->get_field_id('thumbchapt'); ?>">
 			<?php echo $chapter_options; ?>
 			</select>
 		<?php } ?>
@@ -124,7 +123,11 @@ class ceo_thumbnail_widget extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', create_function('', 'return register_widget("ceo_thumbnail_widget");') );
+function ceo_thumbnail_widget_register() {
+	register_widget('ceo_thumbnail_widget');
+}
+
+add_action('widgets_init', 'ceo_thumbnail_widget_register');
 
 
 ?>
