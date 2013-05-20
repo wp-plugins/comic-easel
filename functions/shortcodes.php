@@ -55,15 +55,50 @@ function ceo_cast_display($character, $stats, $image) {
 	return $cast_output;
 }
 
+// , $limit, $stats, $image, $order
+function ceo_get_character_list($chapter) {
+	global $wpdb;
+	$sql_string3 = "SELECT DISTINCT terms2.name as tag
+			FROM
+			wp_posts as p1
+			LEFT JOIN wp_term_relationships as r1 ON p1.ID = r1.object_ID
+			LEFT JOIN wp_term_taxonomy as t1 ON r1.term_taxonomy_id = t1.term_taxonomy_id
+			LEFT JOIN wp_terms as terms1 ON t1.term_id = terms1.term_id,
+			
+			wp_posts as p2
+			LEFT JOIN wp_term_relationships as r2 ON p2.ID = r2.object_ID
+			LEFT JOIN wp_term_taxonomy as t2 ON r2.term_taxonomy_id = t2.term_taxonomy_id
+			LEFT JOIN wp_terms as terms2 ON t2.term_id = terms2.term_id
+			WHERE
+			t1.taxonomy = 'chapters' AND p1.post_status = 'publish' AND terms1.term_id = '".$chapter."' AND
+			t2.taxonomy = 'characters' AND p2.post_status = 'publish'
+			AND p1.ID = p2.ID";
+		
+	$character_list = $wpdb->get_results($sql_string3);
+	if (!empty($character_list)) return $character_list;
+	return false;
+}
+
 function ceo_cast_page( $atts, $content = '' ) {
 	extract( shortcode_atts( array(
 					'character' => '',
 					'limit' => '',
 					'order' => 'desc',
 					'stats' => 1,
-					'image' => 1
+					'image' => 1,
+					'chapter' => 0
 					), $atts ) );
 	$cast_output = '';
+	if ($chapter) {
+		$character_list = ceo_get_character_list($chapter);
+		$cast_output .= '<table class="cast-wrapper">'."\r\n";
+		foreach ($character_list as $character) {
+			$character_object = get_term_by('slug', $character->tag, 'characters');
+			$cast_output .= ceo_cast_display($character_object, $stats, $image)."\r\n";
+		}
+		$cast_output .= '</table>'."\r\n";
+		return $cast_output;
+	}
 	if (empty($character)) {
 		if ($limit) {
 			$args = 'orderby=count&order='.$order.'&hide_empty=1&number='.$limit;
