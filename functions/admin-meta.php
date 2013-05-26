@@ -184,7 +184,19 @@ function ceo_edit_toggles_in_post($post) {
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><label for="comic-gallery-columns"><?php _e('Gallery rows to use?','comiceasel'); ?></label></th>
+		<th scope="row"><label for="comic-gallery-full"><?php _e('If Gallery is set, display the comics as full sized? (Multi-Comics)','comiceasel'); ?></label></th>
+		<td>
+			<input id="comic-gallery-full" name="comic-gallery-full" type="checkbox" value="1" <?php checked(1, get_post_meta( $post->ID, 'comic-gallery-full', true )); ?> />
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><label for="comic-gallery-jquery"><?php _e('If Multi-Comics is enabled use the jQuery page flipper?','comiceasel'); ?></label></th>
+		<td>
+			<input id="comic-gallery-jquery" name="comic-gallery-jquery" type="checkbox" value="1" <?php checked(1, get_post_meta( $post->ID, 'comic-gallery-jquery', true )); ?> />
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><label for="comic-gallery-columns"><?php _e('If not full sized, how many gallery rows to use?','comiceasel'); ?></label></th>
 		<td style="width: 30%">
 			<?php
 				$column_count = esc_attr( get_post_meta( $post->ID, 'comic-gallery-columns', true ));
@@ -272,7 +284,9 @@ function ceo_handle_edit_save_comic($post_id, $post) {
 			'comic-hovertext',
 			'comic-gallery',
 			'comic-gallery-columns',
-			'comic-open-lightbox'
+			'comic-open-lightbox',
+			'comic-gallery-full',
+			'comic-gallery-jquery'
 			);
 			
 	foreach ($meta_array as $meta_key) {
