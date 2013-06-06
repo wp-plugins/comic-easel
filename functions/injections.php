@@ -10,7 +10,8 @@ add_action('wp_head', 'ceo_facebook_comic_thumbnail');
 if (!ceo_pluginfo('disable_related_comics')) 
 	add_action('comic-post-extras', 'ceo_display_related_comics');
 add_action('transition_post_status', 'ceo_transition_post_status', 10, 3);
-add_action('comic-transcript', 'ceo_display_the_transcript_action');
+if (!defined('CEO_FEATURE_DISABLE_TRANSCRIPT'))
+	add_action('comic-transcript', 'ceo_display_the_transcript_action');
 
 function ceo_version_meta() {
 	echo apply_filters('ceo_version_meta', '<meta name="Comic-Easel" content="'.ceo_pluginfo('version').'" />'."\r\n");
@@ -68,8 +69,16 @@ function ceo_display_comic_navigation() {
 <?php if (ceo_pluginfo('enable_comment_nav')) { ?>
 			<td class="comic-nav"><a href="<?php comments_link(); ?>" class="comic-nav-comments" title="<?php the_title(); ?>"><?php _e('Comments','comiceasel'); ?>(<span class="comic-nav-comment-count"><?php comments_number( '0', '1', '%' ); ?></span>)</a></td>
 <?php } ?>
-<?php if (ceo_pluginfo('enable_random_nav')) { ?>
-			<td class="comic-nav"><a href="<?php bloginfo('url') ?>?random&nocache=1" class="comic-nav-random" title="Random Comic"><?php _e('Random','comiceasel'); ?></a></td>
+<?php 
+	if (ceo_pluginfo('enable_random_nav')) { 
+		$stay = '';
+		if (ceo_pluginfo('enable_chapter_only_random')) {
+			$chapter = get_the_terms($post->ID, 'chapters');
+			if (!empty($chapter)) $stay = '&stay='.reset($chapter)->term_id;
+		}
+			
+?>
+			<td class="comic-nav"><a href="<?php bloginfo('url') ?>?random&nocache=1<?php echo $stay; ?>" class="comic-nav-random" title="Random Comic"><?php _e('Random','comiceasel'); ?></a></td>
 <?php } ?>
 	<td class="comic-nav"><?php if ($next_comic) { ?><a href="<?php echo $next_comic ?>" class="comic-nav-next<?php if (!$next_comic) { ?> comic-nav-inactive<?php } ?>"><?php echo $next_text; ?></a><?php } else { echo $next_text; } ?></td>
 	<td class="comic-nav"><?php if ( get_permalink() != $last_comic ) { ?><a href="<?php echo $last_comic ?>" class="comic-nav-last<?php if ( get_permalink() == $last_comic ) { ?> comic-nav-inactive<?php } ?>"><?php echo $last_text; ?></a><?php } else { echo $last_text; } ?></td>
