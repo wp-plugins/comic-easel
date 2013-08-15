@@ -4,8 +4,41 @@ Defaults for the Comic Easel Elements.
 */
 
 #comic-wrap {
-	clear:both;
+	clear: both;
 }
+
+.comic-table {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+#sidebar-over-comic {}
+
+#sidebar-left-of-comic {
+	display: table-cell;
+	vertical-align: top;
+	width: 206px;
+	padding: 2px;
+}
+
+#comic {
+	text-align: center;
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+	padding: 2px;
+}
+
+#sidebar-right-of-comic {
+	display: table-cell;
+	vertical-align: top;
+	width: 206px;
+	padding: 2px;
+}
+
+#sidebar-under-comic {}
+
 
 table#comic-nav-wrapper {
     background: #333;
@@ -62,14 +95,13 @@ table#comic-nav-wrapper {
 	color: #ffcf00;
 }
 
-#comic {
-	text-align: center;
-}
+
 
 #comic img {
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     max-width: 100%;
+    text-align: center;
 }
 
 #blogheader {
@@ -228,4 +260,66 @@ a.transcript-title {
 .MADoc {
 	margin: 0 auto !important;
 	padding: 0 !important;
+}
+
+/* Tool Tips (ComicPress Rascal) */
+.tt a {
+	position: relative;
+	z-index: 1000;
+	color: #3CA3FF;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: -110px;
+}
+
+a.tt span {
+	display: none;
+}
+
+a.tt:hover span.tooltip {
+	position: absolute;
+	display: block;
+	width: 200px;
+	color: #000;
+	margin: 0 auto;
+	text-align: center;
+	height: 164px;
+	background: url('../images/comicpress-rascal.png') no-repeat;
+	z-index: 1000;
+}
+
+a.tt:hover span.top {
+	display: block;
+	width: 200px;
+	height: 35px;
+	padding-top: 2px;
+	margin-top: 55px;
+	margin-left: 25px;
+	background: url('../images/bubble.png') 0 0 no-repeat;
+	z-index: 1000;
+}
+a.tt:hover span.middle {
+	/* different middle bg for stretch */
+	display: block;
+	width: 180px;
+	margin: 0 0 0 25px;
+	padding: 0 10px;
+	background: url('../images/bubble.png') -200px 0 repeat-y;
+	z-index: 1000;
+}
+a.tt:hover span.bottom {
+	display: block;
+	width: 200px;
+	height: 15px;
+	background-position: -100px;
+	color: #548912;
+	margin-left: 25px;
+	background: url('../images/bubble.png') 0 -35px no-repeat;
+	z-index: 1000;
+}
+
+.ie .tt a:hover {
+	z-index: 1000;
+	color: #aaaaff;
+	background-color: Transparent;
 }

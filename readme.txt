@@ -3,7 +3,7 @@ Contributors: Frumph
 Tags: comiceasel, easel, webcomic, comic, webcomic
 Requires at least: 3.2
 Tested up to: 3.6
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 Donate link: http://frumph.net
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -126,12 +126,22 @@ The comic navigation widget is only seen if you have the comic sidebar's enabled
 
 
 == Changelog ==
+= 1.4.3 = 
+* Support for Jetpack's Publicize and shortlinks for comics.
+* Change menu position to 6 if Jetpack comics is activated so they don't overwrite each other.
+* Fixed some localization strings being the wrong designation
+* added some extra classes to the nav buttons in the default nav so it can be skinned properly
+* sep. the comic_display_comic() function into individual parts so it isn't as lengthy to read
+* don't check for navigate only chapters button is enabled when there is an option for it already on the random button
+* removed w3 total cache transition post cache clear due to new change with w3 total cache
+
 = 1.4.2 =
 * shortcodes: fixed the 'ordering' of the thumbnail=1 in the comic-archive for list=0
 * import: used proper site url find for is_multisite() installs - hopefully
 * redirect: adding &comment to the /?latest=# line like /?latest=#&comment will make it add the #respond to the url line to go straight to the comments section
 * shortcodes: fixed the 'ASC' 'DESC' display of thumbnails on the list_all list=0 (see first fix in 1.4.2, same thing just fixed the fix)
 * CSS: changed the archive pages list-wrap's to be width: auto; to auto determine size available
+* Jetpack Photon support, if Photon is enabled, all comic images will be served from the WordPress CDN saving you bandwidth.
 
 = 1.4.1 =
 * Remove testing code for thumbnails in the related comics section 
