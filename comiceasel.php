@@ -3,11 +3,11 @@
 Plugin Name: Comic Easel
 Plugin URI: http://comiceasel.com
 Description: Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost all WordPress themes. With just a few modifications of adding injection do_action locations into a theme, you can have the theme of your choice display and manage a webcomic.
-Version: 1.4.5
+Version: 1.5
 Author: Philip M. Hofer (Frumph)
 Author URI: http://frumph.net/
 
-Copyright 2012 Philip M. Hofer (Frumph)  (email : philip@frumph.net)
+Copyright 2012,2013 Philip M. Hofer (Frumph)  (email : philip@frumph.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -326,14 +326,6 @@ function ceo_activation() {
 // Redirects /?latest /?random etc.
 @require('functions/redirects.php');
 
-
-/**
- * Get the path to the plugin folder.
- */
-function ceo_get_plugin_path() {
-	return PLUGINDIR . '/' . preg_replace('#^.*/([^\/]*)#', '\\1', dirname(plugin_basename(__FILE__)));
-}
-
 /**
  * These set of functions are for the configuration ceo_pluginfo() information
  * 
@@ -346,7 +338,7 @@ function ceo_load_options($reset = false) {
 	if (empty($ceo_config)) {
 		delete_option('comiceasel-config');
 		foreach (array(
-			'db_version' => '1.1',
+			'db_version' => '1.2',
 			'add_dashboard_frumph_feed_widget' => true,
 			'disable_comic_on_home_page' => false,
 			'disable_comic_blog_on_home_page' => false,
@@ -372,7 +364,15 @@ function ceo_load_options($reset = false) {
 			'enable_transcripts_in_comic_posts' => false,
 			'enable_chapter_only_random' => false,
 			'enable_motion_artist_support' => false,
-			'enable_hoverbox' => false
+			'enable_hoverbox' => false,
+			'enable_buy_comic' => false,
+			'buy_comic_email' => 'yourname@yourpaypalemail.com',
+			'buy_comic_url' => home_url().'/shop/',
+			'buy_comic_sell_print' => false,
+			'buy_comic_print_amount' => '25.00',
+			'buy_comic_sell_original' => true,
+			'buy_comic_orig_amount' => '65.00',
+			'buy_comic_text' => __('*Additional shipping charges will applied at time of purchase.','comiceasel')
 		) as $field => $value) {
 			$ceo_config[$field] = $value;
 		}
@@ -384,17 +384,21 @@ function ceo_load_options($reset = false) {
 
 function ceo_pluginfo($whichinfo = null) {
 	global $ceo_pluginfo;
-//	ceo_load_options('reset');	
+//	ceo_load_options('reset');	-- uncomment to reset defaults
 	if (empty($ceo_pluginfo) || $whichinfo == 'reset') {
 		// Important to assign pluginfo as an array to begin with.
 		$ceo_pluginfo = array();
 		$ceo_options = ceo_load_options();
-		if ( !isset($ceo_options['db_version']) ||  empty($ceo_options['db_version']) || (version_compare($ceo_options['db_version'], '1.1', '<')) ) {
-			ceo_chapters_activate();
-			$ceo_options['db_version'] = '1.1';
-			$ceo_options['disable_style_sheet'] = false;
-			$ceo_options['display_first_comic_on_home_page'] = false;
-			$ceo_options['disable_style_sheet'] = false;
+		if ( !isset($ceo_options['db_version']) || empty($ceo_options['db_version']) || (version_compare($ceo_options['db_version'], '1.2', '<')) ) {
+			$ceo_options['db_version'] = '1.2';
+			$ceo_options['enable_buy_comic'] = false;
+			$ceo_options['buy_comic_email'] = 'yourname@yourpaypalemail.com';
+			$ceo_options['buy_comic_url'] = home_url().'/shop/';
+			$ceo_options['buy_comic_amount'] = '25.00';
+			$ceo_options['buy_comic_sell_original'] = true;
+			$ceo_options['buy_comic_sell_print'] = false;
+			$ceo_options['buy_comic_orig_amount'] = '65.00';
+			$ceo_options['buy_comic_text'] = __('*Additional shipping charges will applied at time of purchase.','comiceasel');
 			update_option('comiceasel-config', $ceo_options);
 		}
 		$ceo_coreinfo = wp_upload_dir();
@@ -411,9 +415,9 @@ function ceo_pluginfo($whichinfo = null) {
 				'style_url' => get_stylesheet_directory_uri(),
 				'style_path' => get_stylesheet_directory(),
 				// comic-easel plugin directory/url
-				'plugin_url' => plugin_dir_url(dirname (__FILE__)) . 'comic-easel',
-				'plugin_path' => trailingslashit(ABSPATH) . ceo_get_plugin_path(),
-				'version' => '1.4.5'
+				'plugin_url' => plugin_dir_url(__FILE__),
+				'plugin_path' => plugin_dir_path(__FILE__),
+				'version' => '1.5'
 		);
 		// Combine em.
 		$ceo_pluginfo = array_merge($ceo_pluginfo, $ceo_addinfo);
@@ -446,7 +450,7 @@ function ceo_test_information($vartodump) { ?>
 
 // Load all the widgets
 
-foreach (glob(ceo_pluginfo('plugin_path')  . '/widgets/*.php') as $widgefile) {
+foreach (glob(ceo_pluginfo('plugin_path')  . 'widgets/*.php') as $widgefile) {
 	require_once($widgefile);
 }
 
