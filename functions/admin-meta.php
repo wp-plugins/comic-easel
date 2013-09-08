@@ -20,6 +20,10 @@ function ceo_admin_init() {
 	
 	add_action('create_term', 'ceo_chapters_add_edit_menu_order');
 //	add_filter('get_terms_args', 'ceo_chapters_find_menu_orderby');
+
+
+	add_action( 'restrict_manage_posts', 'ceo_filter_restrict_manage_posts' );
+	add_filter( 'parse_query', 'ceo_taxonomy_filter_post_type_request' );	
 }
 
 function ceo_chapters_add_edit_menu_order($term_id) {
@@ -157,6 +161,46 @@ function ceo_manage_comic_columns($column_name, $id) {
 	} // end switch
 }
 
+// Filter the request to just give posts for the given taxonomy, if applicable.
+function ceo_filter_restrict_manage_posts() {
+    global $typenow;
+	if ('comic' == $typenow) {
+		$post_types = get_post_types( array( '_builtin' => false ) );
+		if ( in_array( $typenow, $post_types ) ) {
+    		$filters = get_object_taxonomies( $typenow );
+			// remove post tag
+			$filters = array_diff($filters, array('post_tag'));
+			foreach ( $filters as $tax_slug ) {
+				$tax_obj = get_taxonomy( $tax_slug );
+				wp_dropdown_categories( array(
+					'show_option_all' => __('Show All '.$tax_obj->label ),
+					'taxonomy' 	  => $tax_slug,
+					'name' 		  => $tax_obj->name,
+					'orderby' 	  => 'name',
+					'selected' 	  => (isset($_GET[$tax_slug])) ? $_GET[$tax_slug] : '',
+					'hierarchical' 	  => $tax_obj->hierarchical,
+					'show_count' 	  => false,
+					'hide_empty' 	  => true
+				) );
+			}
+		}
+	}
+}
+
+function ceo_taxonomy_filter_post_type_request( $query ) {
+	global $pagenow, $typenow;
+	if ( 'edit.php' == $pagenow ) {
+		$filters = get_object_taxonomies( $typenow );
+		foreach ( $filters as $tax_slug ) {
+			$var = &$query->query_vars[$tax_slug];
+			if ( isset( $var ) ) {
+				$term = get_term_by( 'id', $var, $tax_slug );
+				if (!empty($term)) $var = $term->slug;
+			}
+		}
+	}
+}
+
 function ceo_edit_select_motion_artist_directory_in_post($post) {  
 
 	$current_directory = get_post_meta( $post->ID, 'ma-directory', true );
@@ -285,6 +329,16 @@ function ceo_edit_toggles_in_post($post) {
 <?php
 }
 
+function ceo_media_embed_box($post) {
+	$media_url = get_post_meta($post->ID, 'media_url', true);
+	if (empty($media_url)) $media_url = '';
+?>
+You can add the url from:<br />
+blip.tv, DailyMotion, FunnyOrDie.com, Hulu, Instagram, Qik, Photobucket, Rdio, Revision3, Scribd, SlideShare, Smugmug, SoundCloud, Spotify, Youtube, Twitter, Vimeo, WordPress.tv<br />
+	<input id="media_url" name="media_url" type="input" style="width: 80%" value="<?php echo $media_url; ?>" />
+<?php
+}
+
 function ceo_edit_hovertext_in_post($post) { 
 	wp_nonce_field( basename( __FILE__ ), 'comic_nonce' );
 	$hovertext = esc_attr( get_post_meta( $post->ID, 'comic-hovertext', true ) );
@@ -391,6 +445,8 @@ function ceo_add_comic_in_post() {
 		add_meta_box('ceo_select_motion_artist_directory_in_post', __('Select Motion Artist Comic', 'comiceasel'), 'ceo_edit_select_motion_artist_directory_in_post', 'comic', 'side', 'low');
 	if (!defined('CEO_FEATURE_FLASH_UPLOAD'))
 		add_meta_box('ceo_flash_upload', __('Add Flash Comic', 'comiceasel'), 'ceo_flash_upload_box', 'comic', 'normal', 'high');
+	if (defined('CEO_FEATURE_MEDIA_EMBED')) 
+		add_meta_box('ceo_media_embed_file', __('Media Url', 'comiceasel'), 'ceo_media_embed_box', 'comic', 'normal', 'low');
 	$context_output = '<ul><ol>';
 	$context_output .= '<li>'.__('Add a title to the comic.&nbsp; Titles must be alpha-numerical, not just numbers.','comiceasel').'</li>';
 	$context_output .= '<li>'.__('Add some info to the blog section of the comic if you want to (not required).','comiceasel').'</li>';
@@ -461,7 +517,8 @@ function ceo_handle_edit_save_comic($post_id, $post) {
 			'buyorig-status',
 			'flash_file',
 			'flash_height',
-			'flash_width'
+			'flash_width',
+			'media_url'
 			);
 			
 	foreach ($meta_array as $meta_key) {

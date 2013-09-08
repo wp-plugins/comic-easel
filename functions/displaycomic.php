@@ -140,12 +140,13 @@ function ceo_display_comic_gallery($size = 'full') {
 			if ($comic_lightbox) $output .= '<div class="comic-lightbox-text">'.__('Click comic to view larger version.','comiceasel').'</div>';
 		}			
 	} else {
+		$output .= ceo_display_featured_image_comic($size);
 		$columns = get_post_meta( $post->ID, 'comic-gallery-columns', true );
 		if (empty($columns)) $columns = 5;
 		$args = array(
 				'id'         => $post->ID,
 				'columns'    => $columns,
-				'exclude'    => $post_image_id
+				'exclude'    => array($post->ID)
 				);
 		$output .= gallery_shortcode($args);
 	}	
@@ -164,6 +165,7 @@ function ceo_display_flash_comic($post, $flash_url) {
 	$output .= '    <object type="application/x-shockwave-flash" data="'.$flash_url.'" width="'.$width.'" height="'.$height.'">'."\r\n";
 	$output .= '        <param name="movie" value="'.$flash_url.'"/>'."\r\n";
 	$output .= '    <!--<![endif]-->'."\r\n";
+	$output .= ceo_display_featured_image_comic('full');
 	$output .= '        <a href="http://www.adobe.com/go/getflash">'."\r\n";
 	$output .= '            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>'."\r\n";
 	$output .= '        </a>'."\r\n";
@@ -189,10 +191,14 @@ function ceo_display_comic($size = 'full') {
 	$output = '';
 	if (ceo_the_above_html()) $output .= html_entity_decode(ceo_the_above_html())."\r\n";
 
-	if (($motion_artist_comic = get_post_meta( $post->ID, 'ma-directory', true )) == true) {
+	if ($motion_artist_comic = get_post_meta( $post->ID, 'ma-directory', true )) {
 		$output .= ceo_display_motion_artist_comic($motion_artist_comic);
-	} elseif (($flash_file = get_post_meta($post->ID, "flash_file", true)) == true) {
+	} elseif ($flash_file = get_post_meta($post->ID, "flash_file", true)) {
 		$output .= ceo_display_flash_comic($post, $flash_file);
+	} elseif (($media_url = get_post_meta( $post->ID, 'media_url', true )) && defined('CEO_FEATURE_MEDIA_EMBED')) {
+		$output .= '<center>';
+		$output .= wp_oembed_get( $media_url );
+		$output .= '</center>';
 	} else {
 		$comic_galleries = get_post_meta( $post->ID, 'comic-gallery', true );
 		if ($comic_galleries) {
