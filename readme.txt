@@ -128,6 +128,7 @@ The comic navigation widget is only seen if you have the comic sidebar's enabled
 == Changelog ==
 = 1.5.5 = 
 * JS, added keyboard navigation .js file - auto-on always
+* the thumbnail widget when you have multiple thumbs showing now has the wrapper on the outside and individuals inside of that wrapper
 
 = 1.5.4 =
 * CSS: removed the padding in #comic-foot and on #comic
