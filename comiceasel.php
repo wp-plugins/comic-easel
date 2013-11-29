@@ -3,7 +3,7 @@
 Plugin Name: Comic Easel
 Plugin URI: http://comiceasel.com
 Description: Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost all WordPress themes. With just a few modifications of adding injection do_action locations into a theme, you can have the theme of your choice display and manage a webcomic.
-Version: 1.5.6
+Version: 1.5.7
 Author: Philip M. Hofer (Frumph)
 Author URI: http://frumph.net/
 
@@ -64,7 +64,7 @@ function ceo_initialize_post_types() {
 					'query_var' => 'comic', // was true
 					'capability_type' => 'post',
 					'taxonomies' => array( 'post_tag' ),
-					'rewrite' => array( 'slug' => $comic_slug, 'with_front' => false, 'feeds' => true ),
+					'rewrite' => array( 'slug' => $comic_slug, 'with_front' => true, 'feeds' => true ),
 					'hierarchical' => false,
 					'can_export' => true,
 					'show_in_menu' => true,
@@ -73,7 +73,7 @@ function ceo_initialize_post_types() {
 					'map_meta_cap' => true,
 					'has_archive' => true,
 					'menu_icon' => ceo_pluginfo('plugin_url') . 'images/ceo-icon.png',
-					'supports' => array( 'title', 'editor', 'excerpt', 'author', 'comments', 'thumbnail', 'custom-fields', 'revisions', 'trackbacks', 'publicize', 'shortlinks' ),
+					'supports' => array( 'title', 'editor', 'excerpt', 'author', 'comments', 'thumbnail', 'custom-fields', 'revisions', 'trackbacks', 'shortlinks', 'publicize' ),
 					/* publicize and shortlinks from jetpack plugin */
 					'description' => 'Post type for Comics'
 					));
@@ -425,7 +425,7 @@ function ceo_pluginfo($whichinfo = null) {
 				// comic-easel plugin directory/url
 				'plugin_url' => plugin_dir_url(__FILE__),
 				'plugin_path' => plugin_dir_path(__FILE__),
-				'version' => '1.5.4'
+				'version' => '1.5.7'
 		);
 		// Combine em.
 		$ceo_pluginfo = array_merge($ceo_pluginfo, $ceo_addinfo);
