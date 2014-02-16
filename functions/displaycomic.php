@@ -137,7 +137,7 @@ function ceo_display_comic_gallery($size = 'full') {
 				$count += 1;
 			}
 			if ($comic_galleries_jquery) $output .= "<button id=\"show-".$count."\" type=\"button\" style=\"display:none;\">".$count."</button>\r\n";
-			if ($comic_lightbox) $output .= '<div class="comic-lightbox-text">'.__('Click comic to view larger version.','comiceasel').'</div>';
+//			if ($comic_lightbox) $output .= '<div class="comic-lightbox-text">'.__('Click comic to view larger version.','comiceasel').'</div>';
 		}			
 	} else {
 		$output .= ceo_display_featured_image_comic($size);
@@ -255,12 +255,16 @@ function ceo_display_comic_area() {
 	} else {
 		if ((is_home() || is_front_page()) && !is_paged() && !ceo_pluginfo('disable_comic_on_home_page'))  {
 			ceo_protect();
+			$chapter_on_home = '';
+			$chapter_on_home = get_term_by( 'id', ceo_pluginfo('chapter_on_home'), 'chapters');
+			$chapter_on_home = (!is_wp_error($chapter_on_home) && !empty($chapter_on_home)) ? $chapter_on_home->slug : '';
 			$order = (ceo_pluginfo('display_first_comic_on_home_page')) ?  'asc' : 'desc';
 			$comic_args = array(
 					'showposts' => 1,
 					'posts_per_page' => 1,
 					'post_type' => 'comic',
-					'order' => $order
+					'order' => $order,
+					'chapters' => $chapter_on_home
 					);
 			$wp_query->in_the_loop = true; $comicFrontpage = new WP_Query(); $comicFrontpage->query($comic_args);
 			while ($comicFrontpage->have_posts()) : $comicFrontpage->the_post();
