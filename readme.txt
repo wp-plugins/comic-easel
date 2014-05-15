@@ -3,7 +3,7 @@ Contributors: Frumph
 Tags: comiceasel, easel, webcomic, comic, webcomic
 Requires at least: 3.2
 Tested up to: 3.9.1
-Stable tag: 1.7
+Stable tag: 1.7.1
 Donate link: http://frumph.net
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -125,7 +125,7 @@ The comic navigation widget is only seen if you have the comic sidebar's enabled
 
 
 == Changelog ==
-= 1.7 =
+= 1.7 / 1.7.1 =
 * Now properly adds menu_order column to WPMS installs for chapter ordering
 * Added toggle in archive chapter dropdown that let's you set it so that the count doesn't show
 * changed width of ID column in the chapters editor section to 40px to account for higher iD numbers

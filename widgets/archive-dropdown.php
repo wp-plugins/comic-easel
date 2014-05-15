@@ -12,7 +12,7 @@ function ceo_comic_archive_jump_to_chapter($unhide = false, $exclude = '', $show
 	$args = array(
 			'pad_counts' => 1,
 			'orderby' => 'menu_order',
-			'order' => 'ASC',
+			'order' => 'DESC',
 			'hide_empty' => $unhide,
 			'parent' => 0,
 			'exclude' => array($exclude)
