@@ -3,7 +3,7 @@ Contributors: Frumph
 Tags: comiceasel, easel, webcomic, comic, webcomic
 Requires at least: 3.2
 Tested up to: 4.0
-Stable tag: 1.7.6
+Stable tag: 1.7.7
 Donate link: http://frumph.net
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -66,6 +66,8 @@ Shortcodes are simple embed statements that you can put into pages/post that dis
 - `[cast-page]` Display a list of all of your characters, how many comics they were in and when they first appeared
 - `[transcript]` Display the transcript of the comic whereever you like within the post
 * display=(raw/br/styled*) styled = default [transcript display=raw] = no special output.
+- `[randcomic]` Display a random comic inside a blog post
+* character=slugname  name=postslug chapter=specific-chapter size=(thumbnail/large/full)
 
 = Action Injection Locations =
 
@@ -125,6 +127,11 @@ The comic navigation widget is only seen if you have the comic sidebar's enabled
 
 
 == Changelog ==
+= 1.7.7 =
+* Added dropdown box to choose which thumbnail goes into the og:image for facebook to recognize
+* adjusted the alternate color for the config and moved some alternates around in the css
+* new shortcode [randcomic character=character-slug size=(thumbnail/large/full) chapter=chapter-slug name=post-name]
+
 = 1.7.6 =
 * Fixed the dropdown-archive widget to allow you to recheckmark certain options
 * https://core.trac.wordpress.org/ticket/16863 bug problem still exists with the exclude in the dropdown-archive
