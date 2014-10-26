@@ -3,7 +3,7 @@
 Plugin Name: Comic Easel
 Plugin URI: http://comiceasel.com
 Description: Comic Easel allows you to incorporate a WebComic using the WordPress Media Library functionality with Navigation into almost all WordPress themes. With just a few modifications of adding injection do_action locations into a theme, you can have the theme of your choice display and manage a webcomic.
-Version: 1.7.7.1
+Version: 1.8
 Author: Philip M. Hofer (Frumph)
 Author URI: http://frumph.net/
 
@@ -78,19 +78,26 @@ function ceo_initialize_post_types() {
 					'description' => 'Post type for Comics'
 					));
 
+		$chapter_slug = ucwords(ceo_pluginfo('chapter_type_slug_name'));
+		$chapter_slug_plural = ucwords(ceo_pluginfo('chapter_type_name_plural'));
+		
+		if (empty($chapter_slug) || is_array($chapter_slug)) $chapter_slug = 'Chapter';
+		if (empty($chapter_slug_plural) || is_array($chapter_slug_plural)) $chapter_slug_plural = 'Chapters';
+		
 		$labels = array(
-				'name' => __( 'Chapters', 'comiceasel' ),
-				'singular_name' => __( 'Chapter', 'comiceasel' ),
-				'search_items' =>  __( 'Search Chapters', 'comiceasel' ),
-				'popular_items' => __( 'Popular Chapters', 'comiceasel' ),
-				'all_items' => __( 'All Chapters', 'comiceasel' ),
-				'parent_item' => __( 'Parent Chapter', 'comiceasel' ),
-				'parent_item_colon' => __( 'Parent Chapter:', 'comiceasel' ),
-				'edit_item' => __( 'Edit Chapters', 'comiceasel' ), 
-				'update_item' => __( 'Update Chapters', 'comiceasel' ),
-				'add_new_item' => __( 'Add New Chapter', 'comiceasel' ),
-				'new_item_name' => __( 'New Chapter Name', 'comiceasel' ),
-				); 	
+				'name' => $chapter_slug_plural,
+				'menu_name' => $chapter_slug_plural,
+				'singular_name' => $chapter_slug,
+				'search_items' =>  __( 'Search', 'comiceasel' ).' '.$chapter_slug_plural,
+				'popular_items' => __( 'Popular', 'comiceasel' ).' '.$chapter_slug_plural,
+				'all_items' => __( 'All', 'comiceasel' ).' '.$chapter_slug_plural,
+				'parent_item' => __( 'Parent', 'comiceasel' ).' '.$chapter_slug,
+				'parent_item_colon' => __( 'Parent', 'comiceasel' ).' '.$chapter_slug.':',
+				'edit_item' => __( 'Edit', 'comiceasel' ).' '.$chapter_slug_plural, 
+				'update_item' => __( 'Update', 'comiceasel' ).' '.$chapter_slug_plural,
+				'add_new_item' => __( 'Add New', 'comiceasel' ).' '.$chapter_slug,
+				'new_item_name' => __( 'New', 'comiceasel' ).' '.$chapter_slug.__('Name', 'comiceasel')
+				);
 
 		register_taxonomy('chapters', 'comic', array(
 					'hierarchical' => true,
@@ -100,7 +107,7 @@ function ceo_initialize_post_types() {
 					'query_var' => true,
 					'show_tagcloud' => false,
 					'has_archive' => true,
-					'rewrite' => array( 'slug' => 'chapter', 'with_front' => true, 'feeds' => true ),
+					'rewrite' => array( 'slug' => strtolower($chapter_slug), 'with_front' => true, 'feeds' => true ),
 					));
 
 		$labels = array(
@@ -149,14 +156,79 @@ function ceo_initialize_post_types() {
 					'query_var' => true,
 					'show_tagcloud' => false,
 					'rewrite' => array( 'slug' => 'location', 'with_front' => true, 'feeds' => false ),
-					));	
+					));
+					
 		if (ceo_pluginfo('allow_comics_to_have_categories')) 
 			register_taxonomy_for_object_type('category', 'comic');
+			
 		register_taxonomy_for_object_type('post_tag', 'comic');
 		register_taxonomy_for_object_type('chapters', 'comic');
 		register_taxonomy_for_object_type('characters', 'comic');
 		register_taxonomy_for_object_type('locations', 'comic');
 	}
+}
+
+if (ceo_pluginfo('enable_chapter_in_url')) {
+	add_action( 'registered_post_type', 'ceo_add_post_types_rewrite', 1, 2 );
+	add_filter( 'post_type_link', 'ceo_filter_post_type_link', 1, 2 );
+}
+ 
+/**
+ * Add the numeric permalink structure to bbPress topics and replies.
+ *
+ * @author Nashwan Doaqan
+ */
+function ceo_add_post_types_rewrite( $post_type, $args ) {
+	if ( 'comic' === $post_type ) {
+		add_rewrite_tag( "%chapter_name%", '(.+?)', "post_type=comic&chapters=" );
+		add_permastruct( $post_type, "{$args->rewrite['slug']}/%chapter_name%/%postname%", $args->rewrite );
+	}
+}
+
+/**
+ * Change bbPress post types links.
+ *
+ * @author Nashwan Doaqan
+ */
+function ceo_filter_post_type_link( $post_link , $_post ) {
+    global $wp_rewrite;
+    if ( empty( $_post ) )
+         return $post_link;
+        if ( 'comic' === $_post->post_type ) {
+                $post_link = $wp_rewrite->get_extra_permastruct( $_post->post_type );
+                if ( strpos( $post_link, '%chapter_name%' ) !== FALSE ) {
+                        $chapter = get_the_terms( $_post->ID, 'chapters' );
+						if (is_array($chapter)) {
+							$chapter = reset( $chapter );
+							$chapter_name = ceo_get_taxonomy_parents_names( $chapter->term_id, 'chapters', '/', TRUE );
+							$post_link = str_replace( "%chapter_name%", untrailingslashit( $chapter_name ), $post_link );
+						} else return;
+                }
+                $post_link = str_replace( "%postname%", $_post->post_name, $post_link );
+                $post_link = home_url( user_trailingslashit( $post_link ) );
+     }
+     return $post_link;
+}
+
+function ceo_get_taxonomy_parents_names( $id, $taxonomy, $separator = '/', $nicename = false, $visited = array() ) {
+	$chain = '';
+	$parent = get_term( $id, $taxonomy );
+	if ( is_wp_error( $parent ) || ! $parent )return $parent;
+
+	if ( $nicename )
+		$name = $parent->slug;
+	else
+		$name = $parent->name;
+
+	if ( $parent->parent && ( $parent->parent != $parent->term_id ) && !in_array( $parent->parent, $visited ) ) {
+		$visited[] = $parent->parent;
+		$chain .= ceo_get_taxonomy_parents_names( $parent->parent, $taxonomy, $separator, $nicename, $visited );
+	} 
+	if ( ! empty( $name ) ) {
+		$chain .= $name.$separator;
+	}
+
+	return $chain;
 }
 
 if (!defined('CEO_FEATURE_DISABLE_REWRITE_RULES') && !ceo_pluginfo('disable_cal_rewrite_rules'))
@@ -369,7 +441,7 @@ function ceo_load_options($reset = false) {
 			'enable_embed_nav' => false,
 			'disable_default_nav' => false,
 			'enable_comments_on_homepage' => false,
-			'enable_comic_sidebar_locations' => false,
+			'enable_comic_sidebar_locations' => true,
 			'thumbnail_size_for_rss' => 'thumbnail',
 			'thumbnail_size_for_direct_rss' => 'full',
 			'thumbnail_size_for_archive' => 'large',
@@ -379,6 +451,8 @@ function ceo_load_options($reset = false) {
 			'include_comics_in_blog_archive' => false,
 			'disable_related_comics' => true,
 			'custom_post_type_slug_name' => __('comic','comiceasel'),
+			'chapter_type_slug_name' => __('chapter', 'comiceasel'),
+			'chapter_type_name_plural' => __('chapters', 'comiceasel'),
 			'display_first_comic_on_home_page' => false,
 			'disable_style_sheet' => false,
 			'enable_transcripts_in_comic_posts' => false,
@@ -397,7 +471,8 @@ function ceo_load_options($reset = false) {
 			'disable_cal_rewrite_rules' => false,
 			'chapter_on_home' => 0,
 			'allow_comics_to_have_categories' => false,
-			'enable_nav_above_comic' => false
+			'enable_nav_above_comic' => false,
+			'enable_chapter_in_url' => false
 		) as $field => $value) {
 			$ceo_config[$field] = $value;
 		}
@@ -445,7 +520,14 @@ function ceo_pluginfo($whichinfo = null) {
 			$ceo_options['db_version'] = '1.6';
 			$ceo_options['thumbnail_size_for_facebook'] = 'large';
 			update_option('comiceasel-config', $ceo_options);
-		}		
+		}
+		if (version_compare($ceo_options['db_version'], '1.7', '<')) {
+			$ceo_options['db_version'] = '1.7';
+			$ceo_options['chapter_type_slug_name'] = 'chapter';
+			$ceo_options['chapter_type_name_plural'] = 'chapters';
+			$ceo_options['enable_chapter_in_url'] = false;
+			update_option('comiceasel-config', $ceo_options);
+		}	
 		$ceo_coreinfo = wp_upload_dir();
 		$ceo_addinfo = array(
 				// if wp_upload_dir reports an error, capture it
@@ -462,7 +544,7 @@ function ceo_pluginfo($whichinfo = null) {
 				// comic-easel plugin directory/url
 				'plugin_url' => plugin_dir_url(__FILE__),
 				'plugin_path' => plugin_dir_path(__FILE__),
-				'version' => '1.7.7.1'
+				'version' => '1.8'
 		);
 		// Combine em.
 		$ceo_pluginfo = array_merge($ceo_pluginfo, $ceo_addinfo);

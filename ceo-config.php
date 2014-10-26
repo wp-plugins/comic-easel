@@ -28,7 +28,7 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 				'custom_post_type_slug_name',
 				'chapter_on_home'
 					) as $key) {
-							if (isset($_REQUEST[$key])) 
+							if (isset($_REQUEST[$key]) && !empty($_REQUEST[$key])) 
 								$ceo_options[$key] = wp_filter_nohtml_kses($_REQUEST[$key]);
 			}
 
@@ -44,7 +44,6 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 				'enable_transcripts_in_comic_posts',
 				'enable_motion_artist_support',
 				'enable_hoverbox',
-				'disable_cal_rewrite_rules',
 				'allow_comics_to_have_categories'
 			) as $key) {
 				if (!isset($_REQUEST[$key])) $_REQUEST[$key] = 0;
@@ -60,7 +59,7 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 			foreach (array(
 				'graphic_navigation_directory'
 					) as $key) {
-							if (isset($_REQUEST[$key])) 
+							if (isset($_REQUEST[$key]) && !empty($_REQUESET[$key])) 
 								$ceo_options[$key] = wp_filter_nohtml_kses($_REQUEST[$key]);
 			}
 
@@ -87,14 +86,19 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 
 		if ($_REQUEST['action'] == 'ceo_save_archive') {
 
-/*			foreach (array(
+			foreach (array(
+				'custom_post_type_slug_name',
+				'chapter_type_slug_name',
+				'chapter_type_name_plural'
 					) as $key) {
-							if (isset($_REQUEST[$key])) 
-								$ceo_options[$key] = wp_filter_nohtml_kses($_REQUEST[$key]);
-			} */
+							if (isset($_REQUEST[$key]) && !empty($_REQUEST[$key])) 
+								$ceo_options[$key] = strtolower(wp_filter_nohtml_kses($_REQUEST[$key]));
+			}
 
 			foreach (array(
-				'include_comics_in_blog_archive'
+				'include_comics_in_blog_archive',
+				'disable_cal_rewrite_rules',
+				'enable_chapter_in_url'
 			) as $key) {
 				if (!isset($_REQUEST[$key])) $_REQUEST[$key] = 0;
 				$ceo_options[$key] = (bool)( $_REQUEST[$key] == 1 ? true : false );
@@ -140,13 +144,14 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 		<div id="ceoadmin">
 		  <?php
 		  	$tab_info = array(
+				'main' => __('Main', 'comiceasel'),
 		  		'general' => __('General', 'comiceasel'),
 		  		'navigation' => __('Navigation', 'comiceasel'),
-				'archive' => __('Archive', 'comiceasel'),
+				'archive' => __('Archive', 'comiceasel')
 		  	);
 			if (!defined('CEO_FEATURE_BUY_COMIC'))
 				$tab_info['buycomic'] = __('Buy Comic','comiceasel');
-				
+			$tab_info['webcomics-com'] = __('WebComics.COM', 'comiceasel');
 		  	if (empty($tab)) { $tab = array_shift(array_keys($tab_info)); }
 
 		  	foreach($tab_info as $tab_id => $label) { ?>
@@ -187,7 +192,6 @@ if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-op
 	<div class="ceoadmin-footer">
 		<br />
 		<a href="http://comiceasel.com"><?php _e('Comic Easel','comiceasel'); ?></a> <?php _e('created, developed and maintained by','comiceasel'); ?> <a href="http://frumph.net/">Philip M. Hofer</a> <small>(<a href="http://frumph.net/">Frumph</a>)</small><br />
-		<?php _e('For technical assistance go to the','comiceasel'); ?> <a href="http://forum.frumph.net"><?php _e('Frumph.NET Forums.','comiceasel'); ?></a><br />
 		<?php _e('If you like the Comic Easel plugin, please donate.  It will help in developing new features and versions.','comiceasel'); ?><br />
 		<table style="margin:0 auto;">
 			<tr>
