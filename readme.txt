@@ -3,7 +3,7 @@ Contributors: Frumph
 Tags: comiceasel, easel, webcomic, comic, webcomic
 Requires at least: 3.2
 Tested up to: 4.0
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 Donate link: http://frumph.net
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -127,6 +127,10 @@ The comic navigation widget is only seen if you have the comic sidebar's enabled
 
 
 == Changelog ==
+= 1.8.4 =
+Title fix for comics so that they display // quick patch, links break otherwise
+
+
 = 1.8.3 =
 * Rewrote the code to allow chapters in the URL using a different method
 * removed the 'click to view larger image' text when lightbox is enabled
